@@ -19,9 +19,10 @@
                     <div class="chart-indicator"></div>
                 </div>
                 <div class="chart-info-item">
-                    <div class="title">New users ({{ currentData.date }})</div>
+                    <div class="title">{{ currentData.date }}</div>
                     <div class="amount">
-                        <span class="bold">{{ currentData.value }}</span>
+                        <span class="icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></span>
+                        <span class="bold">{{ currentData.value | money }}</span>
                     </div>
                     <div class="chart-indicator"></div>
                 </div>
@@ -105,21 +106,28 @@
 </template>
 
 <script>
-import { nth, prop } from 'ramda'
-import TextMixin from '@/mixins/text'
+import { nth, prop } from 'ramda';
+import TextMixin from '@/mixins/text';
 
-import VBody from '../../components/Body'
-import Analytics from './components/AnalyticsChart'
+import VBody from '../../components/Body';
+import Analytics from './components/AnalyticsChart';
 
 const TEST_DATA = {
-  labels: ['01/08/2018', '02/08/2018', '03/08/2018', '04/08/2018', '05/08/2018', '06/08/2018'],
+  labels: [
+    '01/08/2018',
+    '02/08/2018',
+    '03/08/2018',
+    '04/08/2018',
+    '05/08/2018',
+    '06/08/2018'
+  ],
   datasets: [
     {
       backgroundColor: 'transparent',
       data: [6000, 7366, 9840, 12340, 10000, 15400]
     }
   ]
-}
+};
 
 const OPTIONS = {
   responsive: true,
@@ -165,11 +173,11 @@ const OPTIONS = {
       }
     ]
   }
-}
+};
 
 export default {
   name: 'Dashboard',
-  data: function () {
+  data: function() {
     return {
       filter: {
         filter: '',
@@ -177,47 +185,47 @@ export default {
       },
       currentData: '',
       analyticData: TEST_DATA
-    }
+    };
   },
   computed: {
-    query: function () {
-      let filter = this.filter.filter
-      let startDate = nth(0, this.filter.date)
-      let endDate = nth(1, this.filter.date)
+    query: function() {
+      let filter = this.filter.filter;
+      let startDate = nth(0, this.filter.date);
+      let endDate = nth(1, this.filter.date);
       return {
         filter,
         startDate,
         endDate
-      }
+      };
     },
-    options: function () {
-      let self = this
+    options: function() {
+      let self = this;
       return {
         ...OPTIONS,
         tooltips: {
           mode: 'point',
           enabled: true,
           callbacks: {
-            label: function (tooltipItem, data) {
+            label: function(tooltipItem, data) {
               self.currentData = {
                 date: prop('xLabel', tooltipItem),
                 value: prop('yLabel', tooltipItem)
-              }
+              };
             }
           }
         }
-      }
+      };
     }
   },
   watch: {
-    query: function (newValue, oldValue) {
-      let oldQuery = this.$route.query
+    query: function(newValue, oldValue) {
+      let oldQuery = this.$route.query;
       this.$router.push({
         query: {
           ...oldQuery,
           ...newValue
         }
-      })
+      });
     }
   },
   mixins: [TextMixin],
@@ -225,7 +233,7 @@ export default {
     Analytics,
     VBody
   }
-}
+};
 </script>
 
 <style lang="sass">
