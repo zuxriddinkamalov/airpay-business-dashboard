@@ -122,8 +122,8 @@ export default {
       let crowdsale = this.$route.params.id
       width = parseInt(width)
       height = parseInt(height)
-      mainColor = mainColor.replace(/^#/, 1)
-      bgColor = bgColor.replace(/^#/, 1)
+      mainColor = mainColor.replace(/^#/, '')
+      bgColor = bgColor.replace(/^#/, '')
       this.iframe = `<iframe width="${width}" height="${height}" src="https://panel.airpay.network?crowdsale=${crowdsale}&bgColor=${bgColor}&color=${mainColor}"></iframe>`
     },
     copySuccess: function () {
