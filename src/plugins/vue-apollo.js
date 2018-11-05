@@ -59,7 +59,7 @@ const defaultOptions = {
   },
   query: {
     fetchPolicy: 'network-only',
-    errorPolicy: 'all'
+    errorPolicy: 'ignore'
   }
 }
 
