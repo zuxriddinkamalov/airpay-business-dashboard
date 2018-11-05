@@ -4,27 +4,17 @@
  *
  */
 
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-
-dayjs.extend(relativeTime)
+import moment from 'moment'
 
 export default {
   filters: {
-    relativeTime: function (date) {
+    relativeTime: function (date, sourceFormat = 'DD/MM/YYYY') {
       if (!date) return ''
-      return dayjs(date).fromNow()
+      return moment(date, sourceFormat).fromNow()
     },
-    time: function (date, format) {
+    time: function (date, format, sourceFormat = format) {
       if (!date) return ''
-      return dayjs(date).format(format)
-    },
-    money: function (price) {
-      if (price) {
-        let val = parseInt(price)
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      }
-      return '0'
+      return moment(date, sourceFormat).format(format)
     }
   }
 }

@@ -229,8 +229,9 @@ export default {
 </script>
 
 <style lang="sass">
-    .el-form-item
-        border-bottom: 1px solid #EDF3FB
+    .dashboard-analytics
+        .el-form-item
+            border-bottom: 1px solid #EDF3FB
     .content
         .el-form-item__label
             padding: 0 30px 0 0

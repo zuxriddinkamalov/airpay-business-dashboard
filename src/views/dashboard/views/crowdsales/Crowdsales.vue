@@ -18,7 +18,7 @@
                     </el-select>
                 </div>
                 <div class="align-self: center;">
-                    <el-button class="shadow" type="primary"><i class="fa fa-plus" aria-hidden="true"></i> Crowdsale campaign</el-button>
+                    <el-button @click="createCrowdsale" class="shadow" type="primary"><i class="fa fa-plus" aria-hidden="true"></i> Crowdsale campaign</el-button>
                 </div>
             </div>
         </div>
@@ -89,10 +89,9 @@
                         <span class="currency bold uppercase">{{ scope.row.amount }}&nbsp;{{ scope.row.currency }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column
-                    label="Actions">
+                <el-table-column label="Actions">
                     <template slot-scope="scope">
-                        <el-button class="shadow" @click="edit(scope.row.id)">Edit</el-button>
+                        <el-button class="shadow" @click="detail(scope.row.id)">Edit</el-button>
                         <el-button type="primary" class="shadow" @click="widget(scope.row.id)">Widget</el-button>
                     </template>
                 </el-table-column>
@@ -110,7 +109,7 @@ import TextMixin from '@/mixins/text'
 import VBody from '../../components/Body'
 import { GET_CROWDSALES_MUTATION } from '../../../../graphql/mutations/dashboard/crowdsales'
 import { SET_CROWDSALE_DATA } from '../../../../store/modules/dashboard/crowdsales/mutation-types'
-import { CROWDSALE_DETAIL } from '../../../../constant/routes'
+import { CROWDSALE_DETAIL, NEW_CROWDSALE, WIDGET } from '../../../../constant/routes'
 
 export default {
   name: 'Crowdsales',
@@ -133,7 +132,13 @@ export default {
   computed: {
     ...mapState({
       activeBusiness: state => state.dashboard.activeBusiness
-    })
+    }),
+    query: function () {
+      let status = this.filter.status
+      return {
+        status
+      }
+    }
   },
   watch: {
     activeBusiness (newValue, oldValue) {
@@ -142,13 +147,24 @@ export default {
       })
       this.loadCrowdsales()
     },
+    query: function (newValue, oldValue) {
+      let oldQuery = this.$route.query
+      this.$router.push({
+        query: {
+          ...oldQuery,
+          ...newValue
+        }
+      })
+    },
     $route (to, from) {
       this.loadCrowdsales()
     }
   },
   methods: {
-    exportCSV: function () {
-      console.warn('Export as csv')
+    createCrowdsale: function () {
+      this.$router.push({
+        name: NEW_CROWDSALE
+      })
     },
     loadCrowdsales: function () {
       let activeBusiness = this.activeBusiness.id
@@ -173,7 +189,7 @@ export default {
           this.loading = false
         })
     },
-    edit: function (id) {
+    detail: function (id) {
       this.$router.push({
         name: CROWDSALE_DETAIL,
         params: {
@@ -183,7 +199,7 @@ export default {
     },
     widget: function (id) {
       this.$router.push({
-        name: CROWDSALE_DETAIL,
+        name: WIDGET,
         params: {
           id: id
         }

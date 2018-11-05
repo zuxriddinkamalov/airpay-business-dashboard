@@ -41,3 +41,10 @@ export const GET_CROWDSALE_MUTATION = gql`
     }
   }
 `
+
+// CREATE CROWDSALE
+export const CREATE_CROWDSALE = gql`
+  mutation($input: InputCrowdsale!, $business: ID!) {
+    createCrowdsale(input: $input, business: $business)
+  }
+`

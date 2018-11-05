@@ -93,7 +93,7 @@
                     prop="metaData"
                     label="Metadata">
                     <template slot-scope="scope">
-                        <div style="margin-right: 10px" class="table-tag meta-name">
+                        <div class="table-tag meta-name">
                             <span class="uppercase" style="margin-right: 10px">Moco crowdsale</span>
                             <i class="fa fa-external-link" aria-hidden="true"></i>
                         </div>
@@ -234,6 +234,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    .filter
-        padding: 20px 0 0
+
 </style>
