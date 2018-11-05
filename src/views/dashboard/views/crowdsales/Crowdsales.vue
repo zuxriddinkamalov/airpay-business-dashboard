@@ -31,9 +31,9 @@
                 :data="crowdsaleData"
                 style="width: 100%">
                 <el-table-column
-                        prop="name"
-                        label="Name"
-                        width="120">
+                    prop="name"
+                    label="Name"
+                    width="120">
                     <template slot-scope="scope">
                         <span class="bold">{{ scope.row.name }} {{ scope.row.symbol }}</span>
                     </template>
@@ -72,7 +72,8 @@
                     label="Period"
                     width="160">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.startDate | time('DD/MM/YYYY') }}</span>-<span>{{ scope.row.endDate | time('DD/MM/YYYY') }}</span>
+                        <span>{{ scope.row.startDate | time('DD/MM/YYYY') }}</span>
+                        -<span>{{ scope.row.endDate | time('DD/MM/YYYY') }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -86,7 +87,8 @@
                     label="Hardcap"
                     width="130">
                     <template slot-scope="scope">
-                        <span class="currency bold uppercase">{{ scope.row.amount }}&nbsp;{{ scope.row.currency }}</span>
+                        <span><i slot="prefix" class="fas fa-dollar-sign"></i></span>&nbsp;
+                        <span class="currency bold uppercase">{{ scope.row.hardcap | money }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="Actions">

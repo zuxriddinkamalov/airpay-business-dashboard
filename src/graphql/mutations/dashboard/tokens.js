@@ -28,3 +28,10 @@ export const GET_TOKEN_MUTATION = gql`
     }
   }
 `
+
+//  ADD TOKEN
+export const ADD_TOKEN_MUTATION = gql`
+  query ($tokenInput: tokenInput!){
+    addToken(tokenInput: $tokenInput)
+  }
+`

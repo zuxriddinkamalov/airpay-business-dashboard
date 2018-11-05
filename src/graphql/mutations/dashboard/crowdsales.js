@@ -5,10 +5,23 @@ export const GET_CROWDSALES_MUTATION = gql`
   query($business: ID!) {
     getCrowdsales(business: $business) {
       id
+      name
       hardcap
       startDate
       endDate
-      name
+      whitelist
+      asset {
+        symbol
+        name
+      }
+      assetAccept {
+        asset {
+          symbol
+        }
+        minAmount
+        rate
+      }
+      whitelist
     }
   }
 `
@@ -24,12 +37,6 @@ export const GET_CROWDSALE_MUTATION = gql`
         symbol
         name
       }
-      business {
-        id
-        logo
-        name
-      }
-      agreement
       assetAccept {
         asset {
           symbol

@@ -34,7 +34,7 @@ export const WIDGET = 'widget'
 export const WIDGET_URL = `/${CROWDSALES}/widget/:id`
 
 export const NEW_CROWDSALE = 'new-crowdsale'
-export const NEW_CROWDSALE_URL = `/${CROWDSALES}/new`
+export const NEW_CROWDSALE_URL = `/${CROWDSALES}/create`
 
 // TOKENS ROUTES
 export const TOKENS = 'tokens'
@@ -44,6 +44,8 @@ export const TOKEN_DETAIL = 'token-detail'
 export const TOKEN_DETAIL_URL = `/${TOKENS}/detail/:id`
 export const TOKEN_EDIT = 'token-edit'
 export const TOKEN_EDIT_URL = `/${TOKENS}/edit/:id`
+export const ADD_TOKEN = 'add-token'
+export const ADD_TOKEN_URL = `/${TOKENS}/create`
 
 // USERS ROUTES
 export const USERS = 'users'

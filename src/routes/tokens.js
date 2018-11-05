@@ -6,6 +6,7 @@
  */
 
 import {
+  ADD_TOKEN, ADD_TOKEN_URL,
   TOKEN_DETAIL,
   TOKEN_DETAIL_URL,
   TOKEN_EDIT,
@@ -31,5 +32,10 @@ export default [
     name: TOKEN_EDIT,
     path: TOKEN_EDIT_URL,
     component: () => import('@/views/dashboard/views/tokens/TokenEdit.vue')
+  },
+  {
+    name: ADD_TOKEN,
+    path: ADD_TOKEN_URL,
+    component: () => import('@/views/dashboard/views/tokens/AddToken.vue')
   }
 ]

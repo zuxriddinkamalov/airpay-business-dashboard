@@ -24,6 +24,7 @@
 <script>
 // @ is an alias to /src
 import { path, nth, defaultTo } from 'ramda'
+import { mapState } from 'vuex'
 import { GET_ME_MUTATION } from '../../graphql/mutations/dashboard/dashboard'
 
 import VSidebarHeader from '@/views/dashboard/components/SidebarHeader'
@@ -42,6 +43,18 @@ export default {
     VHeader,
     VMenu,
     VSidebarHeader
+  },
+  computed: {
+    ...mapState({
+      activeBusiness: state => state.dashboard.activeBusiness
+    })
+  },
+  watch: {
+    activeBusiness: function () {
+      this.$router.push({
+        query: {}
+      })
+    }
   },
   mounted () {
     this.$apollo

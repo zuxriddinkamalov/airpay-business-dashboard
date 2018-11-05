@@ -2,19 +2,8 @@
     <VBody title="Tokens">
         <div slot="header">
             <el-row type="flex" align="middle" justify="space-around">
-                <el-col :xs="24" :md="12">
-                    <el-select
-                        class="filter-select"
-                        v-model="filters.status"
-                        default-first-option>
-                        <template slot="prefix"><div class="filter-select-prefix">Status:</div> </template>
-                        <el-option label="All" value=""></el-option>
-                        <el-option label="Filled" value="filled"></el-option>
-                        <el-option label="Pending" value="pending"></el-option>
-                    </el-select>
-                </el-col>
-                <el-col :xs="24" :md="12" class="text-right">
-                    <el-button class="shadow" type="primary"><i class="fa fa-plus" aria-hidden="true"></i> Add token</el-button>
+                <el-col class="text-right">
+                    <el-button @click.native="addToken" class="shadow" type="primary"><i class="fa fa-plus" aria-hidden="true"></i> Add token</el-button>
                 </el-col>
             </el-row>
         </div>
@@ -27,17 +16,39 @@
                 :data="tokenData"
                 style="width: 100%">
                 <el-table-column
-                    label="Network"
-                    width="120">
+                    label="Name"
+                    width="130">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.betwork }}</span>
+                        <span class="bold">{{ scope.row.name }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column
-                    label="Actions">
+                    label="Type"
+                    width="130">
                     <template slot-scope="scope">
-                        <el-button class="shadow" @click="detail(scope.row.id)">Details</el-button>
-                        <el-button class="shadow" @click="edit(scope.row.id)">Edit</el-button>
+                        <span class="bold">{{ scope.row.type }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="Network"
+                    width="130">
+                    <template slot-scope="scope">
+                        <span class="bold">{{ scope.row.network }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="Symbol"
+                    width="130">
+                    <template slot-scope="scope">
+                        <span class="bold">{{ scope.row.symbol }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="Contract address">
+                    <template slot-scope="scope">
+                        <div class="table-tag meta-name contract-address">
+                            <span class="uppercase bold" style="margin-right: 10px">{{ scope.row.contractAddress }}</span>
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </div>
                     </template>
                 </el-table-column>
             </el-table>
@@ -50,9 +61,9 @@ import { mapState } from 'vuex'
 import { path } from 'ramda'
 
 import VBody from '../../components/Body'
-import { TOKEN_DETAIL, TOKEN_EDIT } from '../../../../constant/routes'
 import { GET_TOKENS_MUTATION } from '../../../../graphql/mutations/dashboard/tokens'
 import { SET_TOKEN_DATA } from '../../../../store/modules/dashboard/tokens/mutation-types'
+import { ADD_TOKEN } from '../../../../constant/routes'
 
 export default {
   name: 'Tokens',
@@ -88,8 +99,10 @@ export default {
     }
   },
   methods: {
-    exportCSV: function () {
-      console.warn('Export as csv')
+    addToken: function () {
+      this.$router.push({
+        name: ADD_TOKEN
+      })
     },
     loadTokens: function () {
       let activeBusiness = this.activeBusiness.id
@@ -113,27 +126,12 @@ export default {
           this.$message.error(response)
           this.loading = false
         })
-    },
-    detail: function (id) {
-      this.$router.push({
-        name: TOKEN_DETAIL,
-        params: {
-          id: id
-        }
-      })
-    },
-    edit: function (id) {
-      this.$router.push({
-        name: TOKEN_EDIT,
-        params: {
-          id: id
-        }
-      })
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-
+    .contract-address
+        width: 100%
 </style>
