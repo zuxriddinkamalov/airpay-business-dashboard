@@ -88,12 +88,6 @@ export default {
     })
   },
   watch: {
-    activeBusiness (newValue, oldValue) {
-      this.$router.push({
-        query: {}
-      })
-      this.loadTokens()
-    },
     $route (to, from) {
       this.loadTokens()
     }

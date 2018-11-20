@@ -1,9 +1,9 @@
 /* ============
- * Getters for the transactions module
+ * Getters for the transfers module
  * ============
  *
  * The getters that are available on the
- * transactions module.
+ * transfers module.
  */
 
 export default {

@@ -2,7 +2,7 @@
     <el-dropdown class="sidebar-header" trigger="click">
       <div class="el-dropdown-link">
         <div class="logo" :style="{
-            backgroundImage: `url(${activeBusiness.logo})`,
+            backgroundImage: `url(${activeBusiness.logo || 'images/no-logo.png'})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -14,14 +14,23 @@
       </div>
         <el-dropdown-menu class="sidebar-header-items" slot="dropdown">
             <el-dropdown-item
-                v-for="business in businesses"
-                :key="business.id"
-                :value="business.id"
-                @click.native="changeBusiness">
-                {{ business.name }}
+                v-for="organization in organizations"
+                @click.native="changeOrganization(organization.id)"
+                :key="organization.id">
+                <div class="businesses-item">
+                    <div class="logo" :style="{
+                        backgroundImage: `url(${organization.logo || 'images/no-logo.png'})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                    }"></div>
+                    <div class="business-name">
+                        {{ organization.name }}
+                    </div>
+                </div>
             </el-dropdown-item>
             <el-dropdown-item
-                @click.native="changeBusiness">
+                divided
+                @click.native="createBusiness">
                 Create business
             </el-dropdown-item>
         </el-dropdown-menu>
@@ -36,20 +45,22 @@ import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-t
 export default {
   name: 'SidebarHeader',
   methods: {
-    changeBusiness: function (event) {
-      let businessId = event.target.getAttribute('value')
-      let activeBusiness = find(propEq('id', businessId))(this.businesses)
+    changeOrganization: function (businessId) {
+      let activeBusiness = find(propEq('id', businessId))(this.organizations)
       if (!equals(activeBusiness, this.activeBusiness)) {
         this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
           key: 'activeBusiness',
           value: activeBusiness
         })
       }
+    },
+    createBusiness: function () {
+      console.warn('Create business')
     }
   },
   computed: {
     ...mapState({
-      businesses: state => state.dashboard.businesses,
+      organizations: state => state.dashboard.organizations,
       activeBusiness: state => state.dashboard.activeBusiness
     })
   }
@@ -57,6 +68,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+    .businesses-item
+        display: flex
+        justify-items: center
+        align-items: center
+        .logo
+            width: 20px
+            height: 20px
+            overflow: hidden
+            -webkit-border-radius: 50%
+            -moz-border-radius: 50%
+            border-radius: 50%
     .sidebar-header
         margin-bottom: 20px
         .el-dropdown-link

@@ -19,6 +19,7 @@ import Store from '@/store'
 
 import { API_URL } from '@/constant/api'
 
+/* eslint-disable-next-line */
 const httpLink = new createUploadLink({
   // You should use an absolute URL here
   uri: API_URL
@@ -26,7 +27,7 @@ const httpLink = new createUploadLink({
 
 const checkError = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    let jwtError = find(propEq('message', 'Context creation failed: jwt expired'))(graphQLErrors)
+    let jwtError = find(propEq('message', 'jwt expired'))(graphQLErrors)
     if (jwtError) {
       sessionStorage.removeItem('token')
       return location.reload()

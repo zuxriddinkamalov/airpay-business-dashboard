@@ -5,12 +5,10 @@
                 <el-col :xs="24" :md="12">
                     <el-select
                         class="filter-select"
-                        v-model="filters.status"
+                        v-model="filters.whitelist"
                         default-first-option>
-                        <template slot="prefix"><div class="filter-select-prefix">Status:</div> </template>
-                        <el-option label="All" value=""></el-option>
-                        <el-option label="Filled" value="filled"></el-option>
-                        <el-option label="Pending" value="pending"></el-option>
+                        <template slot="prefix"><div class="filter-select-prefix">Whitelist:</div> </template>
+                        <el-option label="Moco whitelist" value=""></el-option>
                     </el-select>
                 </el-col>
                 <el-col :xs="24" :md="12" class="text-right">
@@ -36,11 +34,6 @@
                                 <span style="margin: 0 10px">{{ scope.row.email | shortEmail }}</span>
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </div>
-                            <!--<div class="table-tag email-pending" v-if="$R.equals('PENDING', scope.row.status)">-->
-                                <!--<i class="fa fa-user" aria-hidden="true"></i>-->
-                                <!--<span style="margin: 0 10px">{{ scope.row.email | shortEmail }}</span>-->
-                                <!--<i class="fa fa-ellipsis-h" aria-hidden="true"></i>-->
-                            <!--</div>-->
                         </div>
                     </template>
                 </el-table-column>
@@ -84,7 +77,7 @@ export default {
   data: function () {
     return {
       filters: {
-        status: ''
+        whitelist: ''
       },
       tableConfig: {
         perPage: PAGINATION_LIMIT,

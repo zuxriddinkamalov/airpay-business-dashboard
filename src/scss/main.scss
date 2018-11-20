@@ -25,7 +25,7 @@ span.el-input__prefix {
 .el-input__prefix {
   height: 100%;
   display: flex;
-  width: 30px;
+  width: 40px;
   justify-content: center;
   align-items: center;
   left: 0;
@@ -62,16 +62,6 @@ input[type='number']::-webkit-outer-spin-button {
 }
 .error-item {
   margin-left: 15px;
-}
-
-.airpay-button {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  box-shadow: 0 4px 7px 0 rgba(var(--primary-color), 0.47);
-}
-.airpay-button:hover,
-.airpay-button:focus {
-  background-color: var(--primary-color);
 }
 
 .center {
@@ -134,7 +124,8 @@ input[type='number']::-webkit-outer-spin-button {
   text-align: right;
 }
 
-input[type='text'] {
+
+.dashboard input[type='text'], .dashboard input[type='number'], .dashboard .el-date-editor.el-input, .dashboard .el-date-editor.el-input__inner {
   background: #ffffff;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
@@ -144,7 +135,7 @@ input[type='text'] {
   color: #313131;
   letter-spacing: 0.2px;
 }
-input[type='text']:focus {
+.dashboard input[type='text']:focus, .dashboard input[type='number']:hover {
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -281,8 +272,11 @@ input[type='text']:focus {
 .pending {
   background: #ffe884;
 }
+.failed {
+  background-color: #ff8c74;
+}
 .pre-pending {
-  background: #ffe884;
+  background: #ffe284;
 }
 .executed {
   background-color: #84ffc8;
@@ -356,7 +350,7 @@ input[type='text']:focus {
     border: 1px solid #f56c6c
   }
   .input-with-button {
-    & input[type='text'] {
+    & input[type='text'], & input[type='number'] {
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
@@ -417,7 +411,7 @@ input[type='text']:focus {
     font-size: 17px;
   }
   .filter-select-prefix {
-    padding: 14px 8px;
+    padding: 14px 15px;
     font-size: 17px;
     color: #636363;
   }

@@ -67,9 +67,7 @@ import { path, find, propEq } from 'ramda'
 
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
-import {
-  GET_TRANSACTION_MUTATION
-} from '../../../../graphql/mutations/dashboard/transactions'
+import { GET_TRANSFER_MUTATION } from '../../../../graphql/mutations/dashboard/transfers'
 
 export default {
   name: 'TransactionDetail',
@@ -84,32 +82,27 @@ export default {
     VBody
   },
   mounted () {
-    this.loadTransaction()
+    this.loadTransfer()
   },
   computed: {
     ...mapState({
       activeBusiness: state => state.dashboard.activeBusiness,
       detail: function (state) {
         let id = path(['params', 'id'], this.$route)
-        return find(propEq('id', id), state.dashboard.transactions.transactionsList)
+        return find(propEq('id', id), state.dashboard.transfers.transfersList)
       }
     })
-  },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadTransaction()
-    }
   },
   methods: {
     execute: function () {
       console.warn('executed')
     },
-    loadTransaction: function () {
+    loadTransfer: function () {
       let id = path(['params', 'id'], this.$route)
       this.loading = true
       this.$apollo
         .query({
-          query: GET_TRANSACTION_MUTATION,
+          query: GET_TRANSFER_MUTATION,
           variables: {
             id: id
           }

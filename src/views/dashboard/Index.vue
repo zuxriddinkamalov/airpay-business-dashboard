@@ -1,5 +1,6 @@
 <template>
   <el-container
+      class="dashboard"
       element-loading-spinner="el-icon-loading"
       element-loading-background="#ebeef4"
       v-loading.fullscreen="loading"
@@ -25,12 +26,14 @@
 // @ is an alias to /src
 import { path, nth, defaultTo } from 'ramda'
 import { mapState } from 'vuex'
+import Helper from '@/mixins/helpers'
 import { GET_ME_MUTATION } from '../../graphql/mutations/dashboard/dashboard'
 
 import VSidebarHeader from '@/views/dashboard/components/SidebarHeader'
 import VHeader from '@/views/dashboard/components/Header'
 import VMenu from '@/views/dashboard/components/Menu'
 import { SET_DASHBOARD_STATE } from '../../store/modules/dashboard/mutation-types'
+import { ROOT } from '../../constant/routes'
 
 export default {
   name: 'Dashboard',
@@ -50,10 +53,17 @@ export default {
     })
   },
   watch: {
-    activeBusiness: function () {
-      this.$router.push({
-        query: {}
-      })
+    activeBusiness: {
+      deep: true,
+      handler: function () {
+        this.$router.push({
+          query: {},
+          name: ROOT
+          // query: {
+          //   hash: this.guid()
+          // }
+        })
+      }
     }
   },
   mounted () {
@@ -62,11 +72,16 @@ export default {
         query: GET_ME_MUTATION
       })
       .then(response => {
-        let businesses = path(['data', 'me', 'owner'], response)
-        let activeBusiness = defaultTo(null, nth(0, businesses))
+        let organizations = path(['data', 'me', 'organizations'], response)
+        let account = path(['data', 'me', 'account'], response)
+        let activeBusiness = defaultTo(null, nth(0, organizations))
         this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
-          key: 'businesses',
-          value: businesses
+          key: 'organizations',
+          value: organizations
+        })
+        this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
+          key: 'account',
+          value: account
         })
         this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
           key: 'activeBusiness',
@@ -78,7 +93,8 @@ export default {
         this.$message.error(response)
         this.loading = false
       })
-  }
+  },
+  mixins: [Helper]
 }
 </script>
 

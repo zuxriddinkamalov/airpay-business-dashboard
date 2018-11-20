@@ -288,10 +288,6 @@ export default {
     })
 
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-    }
-  },
   methods: {
     cloneMilestone: function () {
       return this.crowdsaleData.timelineBonuses.bonuses.push({

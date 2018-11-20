@@ -125,11 +125,6 @@ export default {
     })
 
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadCrowdsale()
-    }
-  },
   methods: {
     saveChanges: function (formName) {
       this.$refs[formName].validate((valid, error) => {

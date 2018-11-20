@@ -1,9 +1,9 @@
 /* ============
- * Actions for the transactions module
+ * Actions for the transfers module
  * ============
  *
  * The actions that are available on the
- * transactions module.
+ * transfers module.
  */
 
 export default {

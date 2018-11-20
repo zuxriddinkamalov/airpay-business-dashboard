@@ -7,7 +7,7 @@ import getters from './getters'
 import mutations from './mutations'
 import state from './state'
 
-import transactions from './transactions'
+import transfers from './transfers'
 import distributions from './distributions'
 import crowdsales from './crowdsales'
 import tokens from './tokens'
@@ -21,7 +21,7 @@ export default {
   mutations,
   state,
   modules: {
-    transactions,
+    transfers,
     distributions,
     crowdsales,
     tokens,

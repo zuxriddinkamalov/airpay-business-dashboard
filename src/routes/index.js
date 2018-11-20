@@ -7,7 +7,7 @@
 
 import { LOGIN, LOGIN_URL } from '../constant/routes'
 import dashboard from './dashboard'
-import transactions from './transaction'
+import transfers from './transfers'
 import distributions from './distribution'
 import crowdsales from './crowdsale'
 import tokens from './tokens'
@@ -23,7 +23,7 @@ export default [
     },
     children: [
       ...dashboard,
-      ...transactions,
+      ...transfers,
       ...distributions,
       ...crowdsales,
       ...tokens,

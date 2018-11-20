@@ -171,12 +171,6 @@ export default {
     }
   },
   watch: {
-    activeBusiness (newValue, oldValue) {
-      this.$router.push({
-        query: {}
-      })
-      this.loadDistributions()
-    },
     $route (to, from) {
       this.loadDistributions()
     }
