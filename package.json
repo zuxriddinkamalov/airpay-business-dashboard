@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "postinstall": "npm install express"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.4.2",
@@ -22,6 +23,7 @@
     "chart.js": "^2.7.3",
     "dayjs": "^1.7.7",
     "element-ui": "^2.4.7",
+    "express": "^4.16.4",
     "ethereum-address": "0.0.4",
     "font-awesome": "^4.7.0",
     "graphql": "^14.0.2",

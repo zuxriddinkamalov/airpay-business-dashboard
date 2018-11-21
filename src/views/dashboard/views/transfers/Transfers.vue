@@ -79,11 +79,11 @@
                 </el-table-column>
                 <el-table-column
                     label="From"
-                    width="130">
+                    width="300">
                     <template slot-scope="scope">
                         <div class="table-tag from-tag">
                             <i class="fas fa-book"></i>
-                            <span style="margin-left: 5px" class="currency bold uppercase">
+                            <span style="margin-left: 5px" class=" bold uppercase">
                                 {{ scope.row.from.name }}&nbsp;{{ scope.row.from.symbol }}
                             </span>
                         </div>
@@ -91,11 +91,11 @@
                 </el-table-column>
                 <el-table-column
                         label="To"
-                        width="130">
-                    <template slot-scope="scope">
+                        width="300">
+                    <template slot-scope="scope"> 
                         <div class="table-tag to-tag">
                             <i class="fas fa-book"></i>
-                            <span style="margin-left: 10px" class="currency bold uppercase">
+                            <span style="margin-left: 10px" class="bold uppercase">
                                 {{ scope.row.to.name }}&nbsp;{{ scope.row.to.symbol }}
                             </span>
                         </div>
@@ -142,21 +142,21 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { path, nth, prop, omit } from 'ramda'
+import { mapState } from 'vuex';
+import { path, nth, prop, omit } from 'ramda';
 
-import { PAGINATION_LIMIT } from '@/constant/dashboard'
-import TimeMixin from '@/mixins/time'
-import TextMixin from '@/mixins/text'
-import Helper from '@/mixins/helpers'
-import VBody from '../../components/Body'
-import { GET_TRANSFERS_MUTATION } from '../../../../graphql/mutations/dashboard/transfers'
-import { TRANSFER_DETAIL } from '../../../../constant/routes'
-import { SET_TRANSFER_DATA } from '../../../../store/modules/dashboard/transfers/mutation-types'
+import { PAGINATION_LIMIT } from '@/constant/dashboard';
+import TimeMixin from '@/mixins/time';
+import TextMixin from '@/mixins/text';
+import Helper from '@/mixins/helpers';
+import VBody from '../../components/Body';
+import { GET_TRANSFERS_MUTATION } from '../../../../graphql/mutations/dashboard/transfers';
+import { TRANSFER_DETAIL } from '../../../../constant/routes';
+import { SET_TRANSFER_DATA } from '../../../../store/modules/dashboard/transfers/mutation-types';
 
 export default {
   name: 'transfers',
-  data: function () {
+  data: function() {
     return {
       filter: {
         type: null,
@@ -169,69 +169,69 @@ export default {
       },
       loading: false,
       transferData: []
-    }
+    };
   },
   mixins: [TimeMixin, TextMixin, Helper],
   components: {
     VBody
   },
-  mounted () {
-    this.loadTransfers()
+  mounted() {
+    this.loadTransfers();
   },
   computed: {
     ...mapState({
       activeBusiness: state => state.dashboard.activeBusiness
     }),
-    query: function () {
-      let type = this.filter.type
-      let status = this.filter.status
-      let startDate = this.filter.date && nth(0, this.filter.date)
-      let endDate = this.filter.date && nth(1, this.filter.date)
+    query: function() {
+      let type = this.filter.type;
+      let status = this.filter.status;
+      let startDate = this.filter.date && nth(0, this.filter.date);
+      let endDate = this.filter.date && nth(1, this.filter.date);
       return {
         type,
         status,
         startDate,
         endDate
-      }
+      };
     },
     page: {
-      get () {
-        return parseInt(path(['query', 'page'], this.$route)) || 1
+      get() {
+        return parseInt(path(['query', 'page'], this.$route)) || 1;
       },
-      set (value) {
+      set(value) {
         this.$router.push({
           query: {
             page: value
           }
-        })
+        });
       }
     }
   },
   watch: {
-    query: function (newValue) {
-      let oldQuery = omit(['page'], this.$route.query)
+    query: function(newValue) {
+      let oldQuery = omit(['page'], this.$route.query);
       this.$router.push({
         query: {
           ...oldQuery,
           ...newValue
         }
-      })
+      });
     },
-    $route (to, from) {
-      this.loadTransfers()
+    $route(to, from) {
+      this.loadTransfers();
     }
   },
   methods: {
-    loadTransfers: function () {
-      let activeBusiness = this.activeBusiness.id
+    loadTransfers: function() {
+      let activeBusiness = this.activeBusiness.id;
       let filter = this.omitEmpty({
         type: prop('type', this.$route.query),
         status: prop('status', this.$route.query),
         startDate: prop('startDate', this.$route.query),
         endDate: prop('endDate', this.$route.query)
-      })
-      let page = this.page
-      this.loading = true
+      });
+      let page = this.page;
+      this.loading = true;
       this.$apollo
         .query({
           query: GET_TRANSFERS_MUTATION,
@@ -250,39 +250,39 @@ export default {
           this.tableConfig.total = path(
             ['data', 'getTransfers', 'pagination', 'totalDocs'],
             response
-          )
+          );
           this.transferData = path(
             ['data', 'getTransfers', 'transfers'],
             response
-          )
+          );
           this.$store.commit(`dashboard/transfers/${SET_TRANSFER_DATA}`, {
             key: 'transfersList',
             value: this.transferData
-          })
-          this.loading = false
+          });
+          this.loading = false;
         })
         .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
+          this.$message.error(response);
+          this.loading = false;
+        });
     },
-    pageChange: function (page) {
+    pageChange: function(page) {
       this.$router.push({
         query: {
           page: page
         }
-      })
+      });
     },
-    overview: function (id) {
+    overview: function(id) {
       this.$router.push({
         name: TRANSFER_DETAIL,
         params: {
           id: id
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="sass" scoped>

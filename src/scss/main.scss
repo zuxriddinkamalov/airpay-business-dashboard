@@ -12,14 +12,17 @@ body {
   font-family: 'Source Sans Pro', sans-serif !important;
 }
 
-.el-date-editor.el-input, .el-date-editor.el-input__inner {
-  width: auto
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  width: auto;
 }
 
 span.el-input__prefix {
-  i.fas, i.fa, i.fab {
+  i.fas,
+  i.fa,
+  i.fab {
     vertical-align: middle;
-    font-size: 15px
+    font-size: 15px;
   }
 }
 .el-input__prefix {
@@ -91,16 +94,16 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .from-tag {
-  background: #DBF9DB;
+  background: #dbf9db;
   & i {
-    color: #9BD89A
+    color: #9bd89a;
   }
 }
 
 .to-tag {
-  background: #DAE4F9;
+  background: #dae4f9;
   & i {
-    color: #8A9DC3
+    color: #8a9dc3;
   }
 }
 
@@ -124,8 +127,10 @@ input[type='number']::-webkit-outer-spin-button {
   text-align: right;
 }
 
-
-.dashboard input[type='text'], .dashboard input[type='number'], .dashboard .el-date-editor.el-input, .dashboard .el-date-editor.el-input__inner {
+.dashboard input[type='text'],
+.dashboard input[type='number'],
+.dashboard .el-date-editor.el-input,
+.dashboard .el-date-editor.el-input__inner {
   background: #ffffff;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
@@ -135,7 +140,8 @@ input[type='number']::-webkit-outer-spin-button {
   color: #313131;
   letter-spacing: 0.2px;
 }
-.dashboard input[type='text']:focus, .dashboard input[type='number']:hover {
+.dashboard input[type='text']:focus,
+.dashboard input[type='number']:hover {
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -188,10 +194,9 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 10px -20px 0;
   display: flex;
   & > div {
-    padding: 20px
+    padding: 20px;
   }
 }
-
 
 .themed-table {
   border: none;
@@ -219,13 +224,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 .detail-table-root {
   padding: 5px;
-  background: #EBF0F6;
+  background: #ebf0f6;
   display: inline-block;
   .detail-table {
     border: none;
-    td, thead, tr, th {
-      border-bottom: 1px solid #E1E7EE;
-      background: #EBF0F6;
+    td,
+    thead,
+    tr,
+    th {
+      border-bottom: 1px solid #e1e7ee;
+      background: #ebf0f6;
     }
     thead tr,
     thead th {
@@ -234,7 +242,7 @@ input[type='number']::-webkit-outer-spin-button {
       padding: 7px 0;
     }
     .el-table__empty-block {
-      background: #EBF0F6;
+      background: #ebf0f6;
       min-height: 15px;
     }
   }
@@ -297,7 +305,7 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: #ebf0f7;
   letter-spacing: 1.2px;
   & i {
-    color: #8F9DB1
+    color: #8f9db1;
   }
 }
 .withdraw-address,
@@ -346,11 +354,12 @@ input[type='number']::-webkit-outer-spin-button {
       margin: 10px;
     }
   }
-  .is-error .el-input input{
-    border: 1px solid #f56c6c
+  .is-error .el-input input {
+    border: 1px solid #f56c6c;
   }
   .input-with-button {
-    & input[type='text'], & input[type='number'] {
+    & input[type='text'],
+    & input[type='number'] {
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
