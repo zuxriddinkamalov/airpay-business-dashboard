@@ -169,7 +169,7 @@ export default {
         .query({
           query: GET_CROWDSALES_MUTATION,
           variables: {
-            business: activeBusiness
+            organization: activeBusiness
           }
         })
         .then(response => {
