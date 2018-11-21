@@ -99,11 +99,6 @@ export default {
     })
 
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadDistribution()
-    }
-  },
   methods: {
     execute: function () {
       console.warn('executed')

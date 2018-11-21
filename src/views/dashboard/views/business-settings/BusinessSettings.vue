@@ -109,11 +109,6 @@ export default {
       return objectURL || this.settingsData.logo
     }
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadSettings()
-    }
-  },
   methods: {
     saveChanges: function (formName) {
       this.$refs[formName].validate((valid, error) => {

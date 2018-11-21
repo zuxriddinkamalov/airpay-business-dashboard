@@ -8,8 +8,8 @@ export default [
     icon: '<i class="fa fa-home" aria-hidden="true"></i>'
   },
   {
-    name: ROUTES.TRANSACTIONS,
-    to: ROUTES.TRANSACTIONS_URL,
+    name: ROUTES.TRANSFERS,
+    to: ROUTES.TRANSFERS_URL,
     title: 'Transfers',
     icon: '<i class="fa fa-exchange-alt" aria-hidden="true"></i>'
   },

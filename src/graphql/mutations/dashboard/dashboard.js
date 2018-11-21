@@ -4,10 +4,16 @@ import gql from 'graphql-tag'
 export const GET_ME_MUTATION = gql`
   query {
     me {
-      owner {
+      account {
         logo
+        email
         name
         id
+      }
+      organizations {
+        id
+        name
+        logo
       }
     }
   }

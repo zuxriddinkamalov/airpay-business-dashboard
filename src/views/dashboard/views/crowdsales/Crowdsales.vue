@@ -143,12 +143,6 @@ export default {
     }
   },
   watch: {
-    activeBusiness (newValue, oldValue) {
-      this.$router.push({
-        query: {}
-      })
-      this.loadCrowdsales()
-    },
     query: function (newValue, oldValue) {
       let oldQuery = this.$route.query
       this.$router.push({

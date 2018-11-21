@@ -9,12 +9,12 @@ export const USER_SETTINGS_URL = `/${USER_SETTINGS}`
 export const LOGIN = 'login'
 export const LOGIN_URL = `/${LOGIN}`
 
-// TRANSACTIONS ROUTES
-export const TRANSACTIONS = 'transfers'
-export const TRANSACTIONS_URL = `/${TRANSACTIONS}`
+// TRANSFERS ROUTES
+export const TRANSFERS = 'transfers'
+export const TRANSFERS_URL = `/${TRANSFERS}`
 
-export const TRANSACTION_DETAIL = `transaction-detail`
-export const TRANSACTION_DETAIL_URL = `/${TRANSACTIONS}/detail/:id`
+export const TRANSFER_DETAIL = `transfer-detail`
+export const TRANSFER_DETAIL_URL = `/${TRANSFERS}/detail/:id`
 
 // DISTRIBUTIONS ROUTES
 export const DISTRIBUTIONS = 'distributions'

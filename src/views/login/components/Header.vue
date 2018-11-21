@@ -20,12 +20,12 @@ export default {
     $BASE_COLOR: #565656
     .header
         align-self: flex-start
-        padding-bottom: 30px
+        padding-bottom: 10px
         margin: 0 auto
         .logo
             width: 260px
             height: 125px
-            margin: 20px auto
+            margin: 10px auto 20px
         .title
             text-align: center
             font-size: 24px

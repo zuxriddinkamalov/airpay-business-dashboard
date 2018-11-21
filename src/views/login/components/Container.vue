@@ -1,11 +1,13 @@
 <template>
     <div class="body">
-        <v-header />
-        <div class="container">
-            <div class="main">
-                <component :is="login.tab"></component>
+        <el-container class="container">
+            <div class="container-content">
+                <v-header />
+                <div class="main">
+                    <component :is="login.tab"></component>
+                </div>
             </div>
-        </div>
+        </el-container>
     </div>
 </template>
 
@@ -37,15 +39,20 @@ export default {
         align-items: center
         align-content: center
         justify-content: center
-        flex-direction: column
         height: 100%
         width: 100%
         .container
-            max-width: 100%
-            width: 400px
-            padding: 20px
-            background: #fff
-            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.06)
-            border-radius: 5px
+            margin: auto
+            max-width: 500px
+            align-items: center
+            display: flex
+            .container-content
+                margin: 15px 0
+                width: 100%
+                .main
+                    padding: 20px
+                    background: #fff
+                    box-shadow: 0 4px 14px 0 rgba(0,0,0,0.06)
+                    border-radius: 5px
 
 </style>

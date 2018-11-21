@@ -19,8 +19,8 @@ export const AUTHORIZATION_MUTATION = gql`
 
 //  Get started
 export const GET_STARTED_MUTATION = gql`
-  mutation($personalInput: getStartedPersonal!, $businessInput: getStartedBusiness!) {
-    getStarted(personalInput: $personalInput, businessInput: $businessInput)
+  mutation($personalInput: getStartedPersonal!, $organizationInput: getStartedOrganization!) {
+    getStarted(personalInput: $personalInput, organizationInput: $organizationInput)
   }
 `
 

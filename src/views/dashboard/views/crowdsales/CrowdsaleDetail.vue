@@ -188,11 +188,6 @@ export default {
     })
 
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadCrowdsale()
-    }
-  },
   methods: {
     loadCrowdsale: function () {
       let id = path(['params', 'id'], this.$route)

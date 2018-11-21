@@ -3,7 +3,7 @@
  * ============
  *
  * The mutations that are available on the
- * login module.
+ * dashboard module.
  */
 
 import { SET_DASHBOARD_STATE } from './mutation-types'

@@ -74,11 +74,6 @@ export default {
       }
     })
   },
-  watch: {
-    activeBusiness (newValue, oldValue) {
-      this.loadToken()
-    }
-  },
   methods: {
     execute: function () {
       console.warn('executed')

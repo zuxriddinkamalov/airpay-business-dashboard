@@ -1,5 +1,5 @@
 /* ============
- * Transactions Module
+ * Transfers Module
  * ============
  */
 

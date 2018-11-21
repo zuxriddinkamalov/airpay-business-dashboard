@@ -6,6 +6,7 @@
  */
 
 export default {
-  businesses: null,
+  organizations: null,
+  account: null,
   activeBusiness: null
 }

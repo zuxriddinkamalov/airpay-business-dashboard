@@ -38,12 +38,20 @@
 
             <el-form-item
                 :rules="[
-                { required: true, message: 'Business name required', trigger: 'blur' },
+                { required: true, message: 'Business name is required', trigger: 'blur' },
             ]" prop="name">
                 <slot name="label"><div class="uppercase label">Business name</div></slot>
                 <el-input
                     v-model="form.name"
                 ></el-input>
+            </el-form-item>
+
+            <el-form-item
+                :rules="[
+                    { required: true, message: 'Website is required', trigger: 'blur' },
+                ]" prop="website">
+                <slot name="label"><div class="uppercase label">Website</div></slot>
+                <el-input v-model="form.website"></el-input>
             </el-form-item>
 
             <el-form-item
@@ -136,11 +144,11 @@ export default {
                 lastName: this.form.lastName,
                 phone: this.form.phone
               },
-              businessInput: {
+              organizationInput: {
                 name: this.form.name,
                 website: this.form.website,
                 fundMethod: this.form.fundMethod,
-                fundGoal: this.form.fundGoal,
+                fundGoal: parseFloat(this.form.fundGoal),
                 fundDate: this.form.fundDate
               }
             }

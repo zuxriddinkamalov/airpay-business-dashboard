@@ -44,8 +44,8 @@
                 v-loading="loading"
                 class="themed-table"
                 border
-                empty-text="No transactions"
-                :data="transactionData"
+                empty-text="No transfers"
+                :data="transferData"
                 style="width: 100%">
                 <el-table-column
                     prop="status"
@@ -63,7 +63,7 @@
                                 <span style="margin-left: 5px">{{ scope.row.status }}</span>
                             </div>
                             <div class="table-tag executed" v-if="$R.equals('EXECUTED', scope.row.status)">
-                                <i class="fa fa-genderless" aria-hidden="true"></i>
+                                <i class="fas fa-check"></i>
                                 <span style="margin-left: 5px">{{ scope.row.status }}</span>
                             </div>
                             <div class="table-tag process" v-if="$R.equals('PROCESS', scope.row.status)">
@@ -132,7 +132,7 @@
                     popper-class="table-pagination-inner"
                     layout="prev, pager, next"
                     @current-change="pageChange"
-                    :current-page="page"
+                    :current-page.sync="page"
                     :page-size="tableConfig.perPage"
                     :total="tableConfig.total">
                 </el-pagination>
@@ -148,18 +148,19 @@ import { path, nth, prop, omit } from 'ramda'
 import { PAGINATION_LIMIT } from '@/constant/dashboard'
 import TimeMixin from '@/mixins/time'
 import TextMixin from '@/mixins/text'
+import Helper from '@/mixins/helpers'
 import VBody from '../../components/Body'
-import { GET_TRANSACTIONS_MUTATION } from '../../../../graphql/mutations/dashboard/transactions'
-import { TRANSACTION_DETAIL } from '../../../../constant/routes'
-import { SET_TRANSACTION_DATA } from '../../../../store/modules/dashboard/transactions/mutation-types'
+import { GET_TRANSFERS_MUTATION } from '../../../../graphql/mutations/dashboard/transfers'
+import { TRANSFER_DETAIL } from '../../../../constant/routes'
+import { SET_TRANSFER_DATA } from '../../../../store/modules/dashboard/transfers/mutation-types'
 
 export default {
-  name: 'Transactions',
+  name: 'transfers',
   data: function () {
     return {
       filter: {
-        type: '',
-        status: '',
+        type: null,
+        status: null,
         date: []
       },
       tableConfig: {
@@ -167,15 +168,15 @@ export default {
         total: 0
       },
       loading: false,
-      transactionData: []
+      transferData: []
     }
   },
-  mixins: [TimeMixin, TextMixin],
+  mixins: [TimeMixin, TextMixin, Helper],
   components: {
     VBody
   },
   mounted () {
-    this.loadTransactions()
+    this.loadTransfers()
   },
   computed: {
     ...mapState({
@@ -197,17 +198,17 @@ export default {
       get () {
         return parseInt(path(['query', 'page'], this.$route)) || 1
       },
-      set (value) {}
+      set (value) {
+        this.$router.push({
+          query: {
+            page: value
+          }
+        })
+      }
     }
   },
   watch: {
-    activeBusiness (newValue, oldValue) {
-      this.$router.push({
-        query: {}
-      })
-      this.loadTransactions()
-    },
-    query: function (newValue, oldValue) {
+    query: function (newValue) {
       let oldQuery = omit(['page'], this.$route.query)
       this.$router.push({
         query: {
@@ -217,25 +218,25 @@ export default {
       })
     },
     $route (to, from) {
-      this.loadTransactions()
+      this.loadTransfers()
     }
   },
   methods: {
-    loadTransactions: function () {
+    loadTransfers: function () {
       let activeBusiness = this.activeBusiness.id
-      let filter = {
-        type: prop('type', this.$route.query) || '',
-        status: prop('status', this.$route.query) || '',
-        startDate: prop('startDate', this.$route.query) || '',
-        endDate: prop('endDate', this.$route.query) || ''
-      }
+      let filter = this.omitEmpty({
+        type: prop('type', this.$route.query),
+        status: prop('status', this.$route.query),
+        startDate: prop('startDate', this.$route.query),
+        endDate: prop('endDate', this.$route.query)
+      })
       let page = this.page
       this.loading = true
       this.$apollo
         .query({
-          query: GET_TRANSACTIONS_MUTATION,
+          query: GET_TRANSFERS_MUTATION,
           variables: {
-            business: activeBusiness,
+            organization: activeBusiness,
             pagination: {
               page: page,
               limit: PAGINATION_LIMIT
@@ -247,16 +248,16 @@ export default {
         })
         .then(response => {
           this.tableConfig.total = path(
-            ['data', 'getTransactions', 'pagination', 'totalDocs'],
+            ['data', 'getTransfers', 'pagination', 'totalDocs'],
             response
           )
-          this.transactionData = path(
-            ['data', 'getTransactions', 'transactions'],
+          this.transferData = path(
+            ['data', 'getTransfers', 'transfers'],
             response
           )
-          this.$store.commit(`dashboard/transactions/${SET_TRANSACTION_DATA}`, {
-            key: 'transactionsList',
-            value: this.transactionData
+          this.$store.commit(`dashboard/transfers/${SET_TRANSFER_DATA}`, {
+            key: 'transfersList',
+            value: this.transferData
           })
           this.loading = false
         })
@@ -274,7 +275,7 @@ export default {
     },
     overview: function (id) {
       this.$router.push({
-        name: TRANSACTION_DETAIL,
+        name: TRANSFER_DETAIL,
         params: {
           id: id
         }
