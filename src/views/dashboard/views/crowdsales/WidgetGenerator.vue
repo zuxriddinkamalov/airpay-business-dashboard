@@ -76,15 +76,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { debounceTime } from 'rxjs/operators'
-import '@/plugins/vue-rx'
-import '@/plugins/vue-clipboard'
-import VBody from '../../components/Body'
+import { mapState } from 'vuex';
+import { debounceTime } from 'rxjs/operators';
+import '@/plugins/vue-rx';
+import '@/plugins/vue-clipboard';
+import VBody from '../../components/Body';
 
 export default {
   name: 'WidgetGenerator',
-  data: function () {
+  data: function() {
     return {
       widgetSettings: {
         width: '1080px',
@@ -93,7 +93,7 @@ export default {
         bgColor: '#12f617'
       },
       iframe: ''
-    }
+    };
   },
   components: {
     VBody
@@ -103,37 +103,39 @@ export default {
       activeBusiness: state => state.dashboard.activeBusiness
     })
   },
-  mounted () {
-    let self = this
+  mounted() {
+    let self = this;
     this.$watchAsObservable('widgetSettings', {
       deep: true,
       immediate: true
-    }).pipe(debounceTime(500)).subscribe(
-      ({ newValue, oldValue }) => {
-        self.generate()
-      },
-      err => console.error(err),
-      () => console.log('complete')
-    )
+    })
+      .pipe(debounceTime(500))
+      .subscribe(
+        ({ newValue, oldValue }) => {
+          self.generate();
+        },
+        err => console.error(err),
+        () => console.log('complete')
+      );
   },
   methods: {
-    generate: function () {
-      let { width, height, mainColor, bgColor } = this.widgetSettings
-      let crowdsale = this.$route.params.id
-      width = parseInt(width)
-      height = parseInt(height)
-      mainColor = mainColor.replace(/^#/, '')
-      bgColor = bgColor.replace(/^#/, '')
-      this.iframe = `<iframe width="${width}" height="${height}" src="https://panel.airpay.network?crowdsale=${crowdsale}&bgColor=${bgColor}&color=${mainColor}"></iframe>`
+    generate: function() {
+      let { width, height, mainColor, bgColor } = this.widgetSettings;
+      let crowdsale = this.$route.params.id;
+      width = parseInt(width);
+      height = parseInt(height);
+      mainColor = mainColor.replace(/^#/, '');
+      bgColor = bgColor.replace(/^#/, '');
+      this.iframe = `<iframe width="${width}" height="${height}" src="https://airpay-network-crowdsale-stage.herokuapp.com?crowdsale=${crowdsale}&bgColor=${bgColor}&color=${mainColor}"></iframe>`;
     },
-    copySuccess: function () {
+    copySuccess: function() {
       this.$message({
         message: 'Successfully copied',
         type: 'success'
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="sass">
