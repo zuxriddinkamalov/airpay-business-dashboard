@@ -44,6 +44,10 @@ import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-t
 
 export default {
   name: 'SidebarHeader',
+  mounted () {
+    console.warn(this.organizations)
+    console.warn(this.activeBusiness)
+  },
   methods: {
     changeOrganization: function (businessId) {
       let activeBusiness = find(propEq('id', businessId))(this.organizations)

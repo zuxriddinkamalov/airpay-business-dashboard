@@ -2,8 +2,8 @@ import gql from 'graphql-tag'
 
 //  GET ALL CROWDSALES RELATIVE TO BUSINESS
 export const GET_CROWDSALES_MUTATION = gql`
-  query($business: ID!) {
-    getCrowdsales(business: $business) {
+  query($organization: ID!) {
+    getCrowdsales(organization: $organization) {
       id
       name
       hardcap
@@ -17,6 +17,7 @@ export const GET_CROWDSALES_MUTATION = gql`
       assetAccept {
         asset {
           symbol
+          name
         }
         minAmount
         rate
