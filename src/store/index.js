@@ -15,7 +15,7 @@ import login from './modules/login'
 import general from './modules/general'
 import dashboard from './modules/dashboard'
 
-const debug = process.env.NODE_ENV !== 'production'
+const debug = true// process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   ...general,
