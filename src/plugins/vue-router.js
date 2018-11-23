@@ -29,16 +29,17 @@ export const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(m => m.meta.auth) && !store.state.login.login) {
+  const isSign = store.state.connect.sign
+  if (to.matched.some(m => m.meta.auth) && !isSign) {
     /*
      * If the user is not authenticated and visits
-     * a page that requires authentication, redirect to the login page
+     * a page that requires authentication, redirect to the connect page
      */
     return next({
       name: LOGIN
     })
   } else {
-    if (to.name === LOGIN && store.state.login.login) {
+    if (to.name === LOGIN && isSign) {
       return next({ name: ROOT })
     }
     return next()

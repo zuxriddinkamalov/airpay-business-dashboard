@@ -8,16 +8,9 @@
 // @ is an alias to /src
 
 import VContainer from './components/Container'
-import { SET_LOGIN_STATE } from '../../store/modules/login/mutation-types'
 
 export default {
-  name: 'login',
-  mounted () {
-    this.$store.commit(`login/${SET_LOGIN_STATE}`, {
-      key: 'tab',
-      value: 'VLoginForm'
-    })
-  },
+  name: 'Connect',
   components: {
     VContainer
   }

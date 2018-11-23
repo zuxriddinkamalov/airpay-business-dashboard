@@ -67,7 +67,6 @@ import { path, find, propEq } from 'ramda'
 
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
-import { GET_TRANSFER_MUTATION } from '../../../../graphql/mutations/dashboard/transfers'
 
 export default {
   name: 'TransactionDetail',
@@ -100,21 +99,6 @@ export default {
     loadTransfer: function () {
       let id = path(['params', 'id'], this.$route)
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_TRANSFER_MUTATION,
-          variables: {
-            id: id
-          }
-        })
-        .then(response => {
-          this.transactionData = path(['data', 'getTransaction'], response)
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     }
   }
 }

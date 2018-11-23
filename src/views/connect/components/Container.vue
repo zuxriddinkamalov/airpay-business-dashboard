@@ -4,7 +4,7 @@
             <div class="container-content">
                 <v-header />
                 <div class="main">
-                    <component :is="login.tab"></component>
+                    <component :is="VLoginForm"></component>
                 </div>
             </div>
         </el-container>
@@ -15,19 +15,17 @@
 import { mapState } from 'vuex'
 import VHeader from './Header'
 
-import VLoginForm from './Login'
-import VBusinessInfo from './BusinessInfo'
+import VLoginForm from './Connect'
 
 export default {
   name: 'Container',
   components: {
     VHeader,
-    VLoginForm,
-    VBusinessInfo
+    VLoginForm
   },
   computed: {
     ...mapState([
-      'login'
+      'connect'
     ])
   }
 }

@@ -104,13 +104,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import { path } from 'ramda'
 
 import TimeMixin from '@/mixins/time'
 import TextMixin from '@/mixins/text'
 import VBody from '../../components/Body'
-import { GET_CROWDSALES_MUTATION } from '../../../../graphql/mutations/dashboard/crowdsales'
-import { SET_CROWDSALE_DATA } from '../../../../store/modules/dashboard/crowdsales/mutation-types'
 import { CROWDSALE_DETAIL, NEW_CROWDSALE, WIDGET } from '../../../../constant/routes'
 
 export default {
@@ -165,25 +162,6 @@ export default {
     loadCrowdsales: function () {
       let activeBusiness = this.activeBusiness.id
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_CROWDSALES_MUTATION,
-          variables: {
-            organization: activeBusiness
-          }
-        })
-        .then(response => {
-          this.crowdsaleData = path(['data', 'getCrowdsales'], response)
-          this.$store.commit(`dashboard/crowdsales/${SET_CROWDSALE_DATA}`, {
-            key: 'crowdsalesList',
-            value: this.crowdsaleData
-          })
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     },
     detail: function (id) {
       this.$router.push({

@@ -10,5 +10,8 @@
 import Vue from 'vue'
 import Web3 from 'web3'
 import VueWeb3 from 'vue-web3'
+import { WEB3_CONNECT_PROVIDER_URL } from '@/constant/web3'
 
-Vue.use(VueWeb3, { web3: new Web3(Web3.currentProvider) })
+const provider = window.web3 ? window.web3.currentProvider : new Web3.providers.WebsocketProvider(WEB3_CONNECT_PROVIDER_URL)
+console.warn(provider)
+Vue.use(VueWeb3, { web3: new Web3(provider) })

@@ -5,7 +5,7 @@
  * The routes and redirects are defined in this file.
  */
 
-import { LOGIN, LOGIN_URL } from '../constant/routes'
+import { CONNECT, CONNECT_URL } from '../constant/routes'
 import dashboard from './dashboard'
 import transfers from './transfers'
 import distributions from './distribution'
@@ -32,9 +32,9 @@ export default [
     ]
   },
   {
-    name: LOGIN,
-    path: LOGIN_URL,
-    component: () => import('@/views/login/Index.vue')
+    name: CONNECT,
+    path: CONNECT_URL,
+    component: () => import('@/views/connect/Index.vue')
   },
   {
     path: '/*',

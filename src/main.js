@@ -10,11 +10,8 @@ import './plugins/font-awesome'
 import './plugins/element-ui'
 import './plugins/vuex-router-sync'
 import './plugins/vue-ramda'
-import './plugins/vue-qriously'
-import './plugins/vue-clipboard'
 import './plugins/vue-web3'
 import { router } from './plugins/vue-router'
-import { apolloProvider } from './plugins/vue-apollo'
 
 /* ============
  * Main App
@@ -29,7 +26,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  apolloProvider,
   store,
   render: h => h(App)
 }).$mount('#app')

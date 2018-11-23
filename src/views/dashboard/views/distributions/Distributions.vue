@@ -133,8 +133,6 @@ import TextMixin from '@/mixins/text'
 import VBody from '../../components/Body'
 
 import { DISTRIBUTION_DETAIL } from '../../../../constant/routes'
-import { GET_DISTRIBUTIONS_MUTATION } from '../../../../graphql/mutations/dashboard/distributions'
-import { SET_DISTRIBUTION_DATA } from '../../../../store/modules/dashboard/distributions/mutation-types'
 
 export default {
   name: 'Distributions',
@@ -183,30 +181,6 @@ export default {
       let activeBusiness = this.activeBusiness.id
       let page = this.page
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_DISTRIBUTIONS_MUTATION,
-          variables: {
-            business: activeBusiness,
-            pagination: {
-              page: page,
-              limit: PAGINATION_LIMIT
-            }
-          }
-        })
-        .then(response => {
-          this.tableConfig.total = path(['data', 'getDistributions', 'pagination', 'totalDocs'], response)
-          this.distributionData = path(['data', 'getDistributions', 'transactions'], response)
-          this.$store.commit(`dashboard/distributions/${SET_DISTRIBUTION_DATA}`, {
-            key: 'distributionsList',
-            value: this.distributionData
-          })
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     },
     pageChange: function (page) {
       this.$router.push({

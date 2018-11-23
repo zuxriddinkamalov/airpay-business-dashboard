@@ -150,9 +150,7 @@ import TimeMixin from '@/mixins/time'
 import TextMixin from '@/mixins/text'
 import Helper from '@/mixins/helpers'
 import VBody from '../../components/Body'
-import { GET_TRANSFERS_MUTATION } from '../../../../graphql/mutations/dashboard/transfers'
 import { TRANSFER_DETAIL } from '../../../../constant/routes'
-import { SET_TRANSFER_DATA } from '../../../../store/modules/dashboard/transfers/mutation-types'
 
 export default {
   name: 'transfers',
@@ -232,39 +230,6 @@ export default {
       })
       let page = this.page
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_TRANSFERS_MUTATION,
-          variables: {
-            organization: activeBusiness,
-            pagination: {
-              page: page,
-              limit: PAGINATION_LIMIT
-            },
-            filter: {
-              ...filter
-            }
-          }
-        })
-        .then(response => {
-          this.tableConfig.total = path(
-            ['data', 'getTransfers', 'pagination', 'totalDocs'],
-            response
-          )
-          this.transferData = path(
-            ['data', 'getTransfers', 'transfers'],
-            response
-          )
-          this.$store.commit(`dashboard/transfers/${SET_TRANSFER_DATA}`, {
-            key: 'transfersList',
-            value: this.transferData
-          })
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     },
     pageChange: function (page) {
       this.$router.push({

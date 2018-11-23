@@ -5,9 +5,9 @@ export const ROOT_URL = `/${ROOT_PATH}`
 export const USER_SETTINGS = 'settings'
 export const USER_SETTINGS_URL = `/${USER_SETTINGS}`
 
-// LOGIN ROUTES
-export const LOGIN = 'login'
-export const LOGIN_URL = `/${LOGIN}`
+// CONNECT ROUTES
+export const CONNECT = 'connect'
+export const CONNECT_URL = `/${CONNECT}`
 
 // TRANSFERS ROUTES
 export const TRANSFERS = 'transfers'

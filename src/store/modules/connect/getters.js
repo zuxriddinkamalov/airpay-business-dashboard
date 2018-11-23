@@ -1,9 +1,9 @@
 /* ============
- * Getters for the login module
+ * Getters for the connect module
  * ============
  *
  * The getters that are available on the
- * login module.
+ * connect module.
  */
 
 export default {

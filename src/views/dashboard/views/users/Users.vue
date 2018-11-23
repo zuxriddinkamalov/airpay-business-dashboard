@@ -69,8 +69,6 @@ import { PAGINATION_LIMIT } from '@/constant/dashboard'
 import TimeMixin from '@/mixins/time'
 import TextMixin from '@/mixins/text'
 import VBody from '../../components/Body'
-import { GET_USERS_MUTATION } from '../../../../graphql/mutations/dashboard/users'
-import { SET_USERS_DATA } from '../../../../store/modules/dashboard/users/mutation-types'
 
 export default {
   name: 'Users',
@@ -107,12 +105,6 @@ export default {
     }
   },
   watch: {
-    activeBusiness (newValue, oldValue) {
-      this.$router.push({
-        query: {}
-      })
-      this.loadUsers()
-    },
     $route (to, from) {
       this.loadUsers()
     }
@@ -125,30 +117,6 @@ export default {
       let activeBusiness = this.activeBusiness.id
       let page = this.page
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_USERS_MUTATION,
-          variables: {
-            business: activeBusiness,
-            pagination: {
-              page: page,
-              limit: PAGINATION_LIMIT
-            }
-          }
-        })
-        .then(response => {
-          this.tableConfig.total = path(['data', 'getUsers', 'pagination', 'totalDocs'], response)
-          this.usersData = path(['data', 'getUsers', 'users'], response)
-          this.$store.commit(`dashboard/users/${SET_USERS_DATA}`, {
-            key: 'usersList',
-            value: this.usersData
-          })
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     },
     pageChange: function (page) {
       this.$router.push({

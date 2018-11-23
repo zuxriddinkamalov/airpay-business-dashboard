@@ -242,7 +242,6 @@ import { prop } from 'ramda'
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
 import { prepareValidateErrors } from '../../../../helpers/errors'
-import { CREATE_CROWDSALE } from '../../../../graphql/mutations/dashboard/crowdsales'
 
 export default {
   name: 'CrowdsaleDetail',
@@ -302,35 +301,6 @@ export default {
       let activeBusiness = prop('id', this.activeBusiness)
       this.$refs[formName].validate((valid, error) => {
         if (valid) {
-          this.$apollo
-            .mutate({
-              mutation: CREATE_CROWDSALE,
-              variables: {
-                business: activeBusiness,
-                input: {
-                  hardcap: this.crowdsaleData.hardcap,
-                  startDate: this.crowdsaleData.startDate,
-                  endDate: this.crowdsaleData.endDate,
-                  name: this.crowdsaleData.name,
-                  whitelist: this.crowdsaleData.whitelist,
-                  assetAccept: {
-
-                  },
-                  asset: {
-
-                  },
-                  assetHotWallet: this.crowdsaleData.assetHotWallet
-                }
-              }
-            })
-            .then(response => {
-              // this.crowdsaleData = path(['data', 'getCrowdsale'], response)
-              this.loading = false
-            })
-            .catch(response => {
-              this.$message.error(response)
-              this.loading = false
-            })
         } else {
           let message = prepareValidateErrors(error)
           this.$message({

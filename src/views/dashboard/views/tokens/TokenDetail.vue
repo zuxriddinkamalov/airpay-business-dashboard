@@ -49,7 +49,6 @@ import { mapState } from 'vuex'
 import { path, find, propEq } from 'ramda'
 
 import VBody from '../../components/Body'
-import { GET_TOKEN_MUTATION } from '../../../../graphql/mutations/dashboard/tokens'
 
 export default {
   name: 'TokenDetail',
@@ -81,21 +80,6 @@ export default {
     loadToken: function () {
       let id = path(['params', 'id'], this.$route)
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_TOKEN_MUTATION,
-          variables: {
-            id: id
-          }
-        })
-        .then(response => {
-          this.transactionData = path(['data', 'getToken'], response)
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     }
   }
 }

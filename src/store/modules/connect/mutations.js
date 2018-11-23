@@ -1,16 +1,16 @@
 /* ============
- * Mutations for the login module
+ * Mutations for the connect module
  * ============
  *
  * The mutations that are available on the
- * login module.
+ * connect module.
  */
 
-import { SET_LOGIN_STATE } from './mutation-types'
+import { SET_CONNECT_STATE } from './mutation-types'
 
 /* eslint-disable no-param-reassign */
 export default {
-  [SET_LOGIN_STATE] (state, { key, value = null }) {
+  [SET_CONNECT_STATE] (state, { key, value = null }) {
     state[key] = value
   }
 }

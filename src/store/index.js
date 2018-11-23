@@ -11,7 +11,7 @@ import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
 
 // Modules
-import login from './modules/login'
+import connect from './modules/connect'
 import general from './modules/general'
 import dashboard from './modules/dashboard'
 
@@ -24,7 +24,7 @@ export default new Vuex.Store({
    */
 
   modules: {
-    login,
+    connect,
     dashboard
   },
 

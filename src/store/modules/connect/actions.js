@@ -1,9 +1,9 @@
 /* ============
- * Actions for the login forms module
+ * Actions for the connect module
  * ============
  *
  * The actions that are available on the
- * login forms module.
+ * connect module
  */
 
 export default {

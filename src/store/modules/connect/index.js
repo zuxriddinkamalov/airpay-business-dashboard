@@ -1,8 +1,7 @@
 /* ============
- * login forms Module
+ * Connect Modules
  * ============
  */
-
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'

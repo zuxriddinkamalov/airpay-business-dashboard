@@ -51,7 +51,6 @@
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
 import { prepareValidateErrors } from '../../../../helpers/errors'
-import { ADD_TOKEN_MUTATION } from '../../../../graphql/mutations/dashboard/tokens'
 
 export default {
   name: 'AddToken',
@@ -74,18 +73,6 @@ export default {
       this.$refs[formName].validate((valid, error) => {
         if (valid) {
           this.loading = true
-          this.$apollo
-            .mutate({
-              mutation: ADD_TOKEN_MUTATION,
-              variables: this.tokenData
-            })
-            .then(response => {
-              this.loading = false
-            })
-            .catch(response => {
-              this.$message.error(response)
-              this.loading = false
-            })
         } else {
           let message = prepareValidateErrors(error)
           this.$message({

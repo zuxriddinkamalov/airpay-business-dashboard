@@ -97,7 +97,6 @@ import { path, find, propEq, prop } from 'ramda'
 
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
-import { GET_CROWDSALE_MUTATION } from '../../../../graphql/mutations/dashboard/crowdsales'
 
 export default {
   name: 'CrowdsaleDetail',
@@ -137,22 +136,6 @@ export default {
       let id = path(['params', 'id'], this.$route)
       let activeBusiness = prop('id', this.activeBusiness)
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_CROWDSALE_MUTATION,
-          variables: {
-            business: activeBusiness,
-            id: id
-          }
-        })
-        .then(response => {
-          // this.crowdsaleData = path(['data', 'getCrowdsale'], response)
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     }
   }
 }

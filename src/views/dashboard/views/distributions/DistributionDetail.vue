@@ -72,7 +72,6 @@ import { path, find, propEq } from 'ramda'
 
 import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
-import { GET_DISTRIBUTION_MUTATION } from '../../../../graphql/mutations/dashboard/distributions'
 
 export default {
   name: 'DistributionDetail',
@@ -106,21 +105,6 @@ export default {
     loadDistribution: function () {
       let id = path(['params', 'id'], this.$route)
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_DISTRIBUTION_MUTATION,
-          variables: {
-            id: id
-          }
-        })
-        .then(response => {
-          this.distributionData = path(['data', 'getDistribution'], response)
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     }
   }
 }

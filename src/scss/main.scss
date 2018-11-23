@@ -407,6 +407,11 @@ input[type='number']::-webkit-outer-spin-button {
   font-size: 17px;
 }
 
+.big-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
 .filter-select {
   &:hover {
     cursor: pointer;

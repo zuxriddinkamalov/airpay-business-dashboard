@@ -58,11 +58,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import { path } from 'ramda'
 
 import VBody from '../../components/Body'
-import { GET_TOKENS_MUTATION } from '../../../../graphql/mutations/dashboard/tokens'
-import { SET_TOKEN_DATA } from '../../../../store/modules/dashboard/tokens/mutation-types'
 import { ADD_TOKEN } from '../../../../constant/routes'
 
 export default {
@@ -101,25 +98,6 @@ export default {
     loadTokens: function () {
       let activeBusiness = this.activeBusiness.id
       this.loading = true
-      this.$apollo
-        .query({
-          query: GET_TOKENS_MUTATION,
-          variables: {
-            business: activeBusiness
-          }
-        })
-        .then(response => {
-          this.tokenData = path(['data', 'getTokens'], response)
-          this.$store.commit(`dashboard/tokens/${SET_TOKEN_DATA}`, {
-            key: 'tokensList',
-            value: this.tokenData
-          })
-          this.loading = false
-        })
-        .catch(response => {
-          this.$message.error(response)
-          this.loading = false
-        })
     }
   }
 }

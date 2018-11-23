@@ -81,7 +81,6 @@ import { mapState } from 'vuex'
 import { prop } from 'ramda'
 
 import VBody from '../../components/Body'
-import { GET_SETTINGS_MUTATION } from '../../../../graphql/mutations/dashboard/settings'
 import { ROOT } from '../../../../constant/routes'
 
 export default {
