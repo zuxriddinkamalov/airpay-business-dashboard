@@ -1,5 +1,5 @@
 <template>
-    <div class="root shadow">
+    <div :class="['root', 'shadow', customStyle]">
         <div class="body">
             <div class="header" :style="{background: headerBg}">
                 <h4 v-if="title" class="title bold">{{ title }}</h4>
@@ -28,7 +28,9 @@ export default {
       default: '#fff'
     },
     title: {
-      required: false,
+      type: String
+    },
+    customStyle: {
       type: String
     }
   }
@@ -38,10 +40,11 @@ export default {
 <style lang="sass" scoped>
     .root
         background: #fff
-        height: 100%
         -webkit-border-radius: 5px
         -moz-border-radius: 5px
         border-radius: 5px
+        overflow: hidden
+        height: 100%
         margin-bottom: 20px
         &:last-child
             margin-bottom: 0
@@ -51,10 +54,10 @@ export default {
         flex-direction: column
         .content
             flex-grow: 2
-            padding: 0 20px 30px
+            padding: 0 20px 20px
     .header
         padding: 30px 20px
         .title
             font-size: 21px
-            color: #404040
+            color: inherit
 </style>

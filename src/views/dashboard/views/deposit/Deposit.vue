@@ -36,7 +36,7 @@
                     <VBody title="2. Deposit Ethereum to your wallet">
                         <div slot="content" class="address-info">
                             <div class="attention">
-                                <div class="attention-content"><span class="bold uppercase">Attention</span> Be aware tha you send
+                                <div class="attention-content"><span class="bold uppercase">Attention</span> Be aware that you send
                                 BTC to correct address with correct fees amount to quickest execution</div>
                             </div>
                             <div class="copy-address-block">

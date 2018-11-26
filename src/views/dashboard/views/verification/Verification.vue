@@ -1,32 +1,31 @@
 <template>
-    <div>
-        <div class="line-chart">
-
-        </div>
-        <div class="dashboard-analytics">
-            <VBody title="Analytics">
-                <div slot="header">
-
-                </div>
-                <div slot="content">
-
-                </div>
-            </VBody>
-        </div>
-    </div>
+    <component :is="step"></component>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import VBody from '../../components/Body'
+import { SET_VERIFICATION_DATA } from '../../../../store/modules/dashboard/verification/mutation-types'
+import VVerificationStatus from './components/VerificationStatus'
+import VVerificationForm from './components/VerificationForm'
 
 export default {
   name: 'Verification',
-  data: function () {
-    return {
-    }
+  mounted () {
+    this.$store.commit(`dashboard/verification/${SET_VERIFICATION_DATA}`, {
+      key: 'verificationTab',
+      value: 'VVerificationForm'
+    })
+  },
+  computed: {
+    ...mapState('dashboard/verification', {
+      step: state => state.verificationTab
+    })
   },
   components: {
-    VBody
+    VBody,
+    VVerificationStatus,
+    VVerificationForm
   }
 }
 </script>
