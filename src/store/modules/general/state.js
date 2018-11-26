@@ -6,6 +6,4 @@
  */
 
 export default {
-  networkError: null,
-  graphQLError: null
 }

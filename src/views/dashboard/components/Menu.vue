@@ -9,7 +9,21 @@
                 :to="{
                     name: item.name
                 }" exact>
-                <a><span class="icon" v-html="item.icon"></span>{{ item.title }}</a>
+                <a><span class="icon" v-html="item.icon"></span><span class="menu-title">{{ item.title }}</span></a>
+                <router-link
+                    v-if="!$R.isEmpty($R.prop('children', item)) && !$R.isNil($R.prop('children', item))"
+                    :class="['sub-menu', { 'side-bar-menu-open': route.name === subItem.name }]"
+                    v-for="subItem in item.children"
+                    tag="li"
+                    :key="subItem.name"
+                    :to="{
+                        name: subItem.name
+                    }" exact>
+                    <a class="sub-item-url">
+                        <span class="menu-title">{{ subItem.title }}</span>
+                        <span v-if="$R.prop('private', subItem)" class="owner uppercase bold">only owner</span>
+                    </a>
+                </router-link>
                 <div v-if="item.divider" class="divider"></div>
             </router-link>
         </ul>
@@ -42,26 +56,30 @@ export default {
         font-weight: bold
         color: #464646
         &:hover
-             color: #000
-    .side-bar-menu-open a
-        color: #377DFE!important
-        &:hover
-            color: #377DFE
+            color: var(--primary-color)!important
+    .side-bar-menu-open > a
+        color: var(--primary-color)!important
         .icon
-            color: #377DFE!important
+            color: var(--primary-color)!important
     .menu-items
+        line-height: 1.5
         margin-top: 30px
+        i
+            vertical-align: middle
         .menu-link
             padding: 10px 0
-            &:hover
-                .icon
-                   color: #667798
             .icon
-                color: #93A0B9
                 width: 30px
                 font-size: 18px!important
                 display: inline-block
-                & i
-                    vertical-align: middle
+        .sub-menu
+            padding-left: 30px
+            .sub-item-url
+                font-weight: normal
+                display: block
+                .owner
+                    line-height: 1.2
+                    color: #000
+                    margin-left: 5px
 
 </style>

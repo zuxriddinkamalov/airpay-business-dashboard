@@ -9,9 +9,22 @@
 </style>
 
 <script>
+import { BASE_COLOR, hexToRGBA, rgbToCSSVar } from './helpers/colors'
 
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    let baseColor = BASE_COLOR
+    let cssRGB = rgbToCSSVar(hexToRGBA(baseColor, 1))
+    document.documentElement.style.setProperty(
+      '--primary-color',
+      `${baseColor}`
+    )
+    document.documentElement.style.setProperty(
+      '--rgb-primary-color',
+      `${cssRGB}`
+    )
+  }
 }
 </script>
 

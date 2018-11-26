@@ -1,23 +1,16 @@
 <template>
-  <el-container
-      class="dashboard"
-      element-loading-spinner="el-icon-loading"
-      element-loading-background="#ebeef4"
-      v-loading.fullscreen="loading"
-  >
-      <el-container v-if="!loading">
-          <el-aside class="side-bar" width="260px">
-              <VSidebarHeader />
-              <VMenu />
-          </el-aside>
-          <el-container>
-              <el-header height="auto">
-                  <VHeader />
-              </el-header>
-              <el-main>
-                  <router-view></router-view>
-              </el-main>
-          </el-container>
+  <el-container class="dashboard">
+      <el-aside class="side-bar" width="260px">
+          <VSidebarHeader />
+          <VMenu />
+      </el-aside>
+      <el-container>
+          <el-header height="auto">
+              <VHeader />
+          </el-header>
+          <el-main>
+              <router-view></router-view>
+          </el-main>
       </el-container>
   </el-container>
 </template>
@@ -32,11 +25,6 @@ import VMenu from '@/views/dashboard/components/Menu'
 
 export default {
   name: 'Dashboard',
-  data: function () {
-    return {
-      loading: true
-    }
-  },
   components: {
     VHeader,
     VMenu,

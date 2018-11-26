@@ -1,103 +1,75 @@
 <template>
     <div>
-        <div class="line-chart">
-            <div class="chart-info">
-                <div class="chart-info-item">
-                    <div class="title">Today raised</div>
-                    <div class="amount">
-                        <span class="icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></span>
-                        <span class="bold">{{ 15343 | money }}</span>
+        <div class="balance">
+            <div class="title bold">Balances</div>
+            <el-row type="flex" class="balance-content">
+                <el-col :xs="24" :sm="19" class="balance-list">
+                    <div :key="account.abbreviation" v-for="account in fakeBalanceData" class="account">
+                        <div class="account-header">
+                            <div class="account-header-title">
+                                {{ account.name }}
+                            </div>
+                            <div class="account-header-icon" v-html="account.icon"></div>
+                        </div>
+                        <div class="balance-value">
+                            <span class="value">{{ account.balance | money }}</span>
+                            <span class="currency uppercase">{{ account.currency }}</span>
+                        </div>
                     </div>
-                    <div class="chart-indicator on"></div>
-                </div>
-                <div class="chart-info-item">
-                    <div class="title">Today raised</div>
-                    <div class="amount">
-                        <span class="icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></span>
-                        <span class="bold">{{ 763988 | money }}</span>
-                    </div>
-                    <div class="chart-indicator"></div>
-                </div>
-                <div class="chart-info-item">
-                    <div class="title">{{ currentData.date }}</div>
-                    <div class="amount">
-                        <span class="icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></span>
-                        <span class="bold">{{ currentData.value | money }}</span>
-                    </div>
-                    <div class="chart-indicator"></div>
-                </div>
-
-            </div>
-            <Analytics :chartData="analyticData" :options="options" />
+                </el-col>
+                <el-col class="balance-button" :xs="24" :md="5">
+                    <el-button class="make-deposit">
+                        <span class="bold">Make deposit</span>
+                    </el-button>
+                </el-col>
+            </el-row>
         </div>
-        <div class="dashboard-analytics">
-            <VBody title="Analytics">
-                <div slot="header">
-                    <el-row>
-                        <el-col :xs="24" :md="12">
-                            <h3 class="header-id">Get detailed analytics info</h3>
-                        </el-col>
-                    </el-row>
-                    <div class="filter">
-                        <div>
-                            <el-select
-                                :clearable="true"
-                                class="filter-select"
-                                v-model="filter.filter"
-                                default-first-option>
-                                <template slot="prefix"><div class="filter-select-prefix">Filter:</div> </template>
-                                <el-option label="Transactions" value="transactions"></el-option>
-                                <el-option label="Distributions" value="distributions"></el-option>
-                                <el-option label="Tokens" value="tokens"></el-option>
-                            </el-select>
-                        </div>
-                        <div>
-                            <el-date-picker
-                                v-model="filter.date"
-                                range-separator="→"
-                                type="daterange"
-                                format="dd/MM/yyyy"
-                                value-format="dd-MM-yyyy"
-                                start-placeholder="Start date"
-                                end-placeholder="End date">
-                            </el-date-picker>
-                        </div>
-                    </div>
-                </div>
+        <div class="tokens-actions">
+            <el-row type="flex" :gutter="15">
+                <el-col :xs="24" :sm="12">
+                    <VBuyTokens />
+                </el-col>
+                <el-col :xs="24" :sm="12">
+                    <VUnlockTokens />
+                </el-col>
+            </el-row>
+        </div>
+        <div class="dashboard-transactions">
+            <VBody title="Last transactions">
                 <div slot="content">
-                    <div class="detail">
-                        <el-form label-width="200px" size="medium">
-                            <el-form-item label="Total transactions">
-                                <span class="bold">{{ 2677 | money }}</span>
-                            </el-form-item>
-                            <el-form-item label="Total sum">
-                                <div class="bold">
-                                    <span class="icon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                    {{ 3433233 | money }}
+                    <div class="transactions-list">
+                        <div v-for="transaction in fakeTransactionsData" :key="transaction.id" class="transaction-row">
+                            <div class="transactions-list-row">
+                                <div class="row-title">Tx Hash</div>
+                                <div class="row-value tx-hash">{{ transaction.txHash | slice(20)}}<i class="far fa-edit"></i></div>
+                            </div>
+                            <div class="transactions-list-row">
+                                <div class="row-title">Date</div>
+                                <div class="row-value">{{ transaction.date | time('DD MMMM YYYY') }}</div>
+                            </div>
+                            <div class="transactions-list-row" style="display: flex;">
+                                <div>
+                                    <div class="row-title"></div>
+                                    <div class="row-value send"><span>&larr;</span></div>
                                 </div>
-                            </el-form-item>
-                            <el-form-item label="Avarage $/user">
-                                <div class="bold">
-                                    <span class="icon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                    {{ 3455 | money }}
+                                <div>
+                                    <div class="row-title">Send</div>
+                                    <div class="row-value bold"><span>{{ transaction.send.amount | money }}</span>
+                                        &nbsp;<span class="uppercase">{{ transaction.send.currency }}</span></div>
                                 </div>
-                            </el-form-item>
-                            <el-form-item label="Avarage $/transaction">
-                                <div class="bold">
-                                    <span class="icon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                    {{ 8344 | money }}
+                            </div>
+                            <div class="transactions-list-row" style="display: flex;">
+                                <div>
+                                    <div class="row-title"></div>
+                                    <div class="row-value receive"><span>&rarr;</span></div>
                                 </div>
-                            </el-form-item>
-                            <el-form-item label="Rejected transactions">
-                                <span class="bold">{{ 123 }}</span>
-                            </el-form-item>
-                            <el-form-item label="Rejected sum">
-                                <div class="bold">
-                                    <span class="icon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                    {{ 230439 | money }}
+                                <div>
+                                    <div class="row-title">Receive</div>
+                                    <div class="row-value bold"><span>{{ transaction.receive.amount | money }}</span>
+                                        &nbsp;<span class="uppercase">{{ transaction.receive.currency }}</span></div>
                                 </div>
-                            </el-form-item>
-                        </el-form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </VBody>
@@ -106,189 +78,108 @@
 </template>
 
 <script>
-import { nth, prop } from 'ramda'
 import TextMixin from '@/mixins/text'
-
+import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
-import Analytics from './components/AnalyticsChart'
+import VBuyTokens from './components/BuyTokens'
+import VUnlockTokens from './components/UnlockTokens'
 
-const TEST_DATA = {
-  labels: [
-    '01/08/2018',
-    '02/08/2018',
-    '03/08/2018',
-    '04/08/2018',
-    '05/08/2018',
-    '06/08/2018'
-  ],
-  datasets: [
-    {
-      backgroundColor: 'transparent',
-      data: [6000, 7366, 9840, 12340, 10000, 15400]
-    }
-  ]
-}
-
-const OPTIONS = {
-  responsive: true,
-  elements: {
-    layout: {
-      padding: {
-        left: 10,
-        right: 10,
-        top: 20
-      }
-    },
-    line: {
-      borderColor: 'rgba(255,255,255,0.5)'
-    },
-    point: {
-      radius: 4,
-      borderWidth: 5,
-      hoverRadius: 5,
-      hoverBorderWidth: 6,
-      borderColor: 'rgba(255,255,255,1)'
-    }
+const FAKE_BALANCE_DATA = [
+  {
+    name: 'Ehhereum',
+    icon: '<i class="fab fa-ethereum"></i>',
+    balance: 1.233,
+    currency: 'ETH'
   },
-  legend: {
-    display: false
+  {
+    name: 'Bitcoin',
+    icon: '<i class="fab fa-btc"></i>',
+    balance: 13332.233,
+    currency: 'BTC'
   },
-  maintainAspectRatio: false,
-  scales: {
-    yAxes: [
-      {
-        display: false,
-        stacked: true,
-        gridLines: {
-          display: false
-        }
-      }
-    ],
-    xAxes: [
-      {
-        display: true,
-        gridLines: {
-          display: false
-        }
-      }
-    ]
+  {
+    name: 'Moco',
+    icon: '<i class="fab fa-btc"></i>',
+    balance: 23333,
+    currency: 'MOCO'
   }
-}
+]
+
+const FAKE_TRANSACTIONS_DATA = [
+  {
+    id: 1,
+    txHash: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2',
+    date: '12/29/2018',
+    send: {
+      currency: 'ETH',
+      amount: 0.345
+    },
+    receive: {
+      currency: 'MOCO',
+      amount: 14388
+    }
+  },
+  {
+    id: 2,
+    txHash: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2',
+    date: '11/28/2018',
+    send: {
+      currency: 'ETH',
+      amount: 0.345
+    },
+    receive: {
+      currency: 'MOCO',
+      amount: 14388
+    }
+  },
+  {
+    id: 3,
+    txHash: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2',
+    date: '12/28/2018',
+    send: {
+      currency: 'ETH',
+      amount: 0.345
+    },
+    receive: {
+      currency: 'MOCO',
+      amount: 14388
+    }
+  },
+  {
+    id: 4,
+    txHash: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2',
+    date: '12/26/2018',
+    send: {
+      currency: 'ETH',
+      amount: 0.345
+    },
+    receive: {
+      currency: 'MOCO',
+      amount: 14388
+    }
+  }
+]
 
 export default {
   name: 'Dashboard',
   data: function () {
     return {
-      filter: {
-        filter: '',
-        date: []
-      },
-      currentData: '',
-      analyticData: TEST_DATA
+      fakeBalanceData: FAKE_BALANCE_DATA,
+      fakeTransactionsData: FAKE_TRANSACTIONS_DATA
     }
   },
-  computed: {
-    query: function () {
-      let filter = this.filter.filter
-      let startDate = nth(0, this.filter.date)
-      let endDate = nth(1, this.filter.date)
-      return {
-        filter,
-        startDate,
-        endDate
-      }
-    },
-    options: function () {
-      let self = this
-      return {
-        ...OPTIONS,
-        tooltips: {
-          mode: 'point',
-          enabled: true,
-          callbacks: {
-            label: function (tooltipItem, data) {
-              self.currentData = {
-                date: prop('xLabel', tooltipItem),
-                value: prop('yLabel', tooltipItem)
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  watch: {
-    query: function (newValue, oldValue) {
-      let oldQuery = this.$route.query
-      this.$router.push({
-        query: {
-          ...oldQuery,
-          ...newValue
-        }
-      })
-    }
-  },
-  mixins: [TextMixin],
+  mixins: [TextMixin, TimeMixin],
   components: {
-    Analytics,
-    VBody
+    VBody,
+    VBuyTokens,
+    VUnlockTokens
   }
 }
 </script>
 
 <style lang="sass">
-    .dashboard-analytics
-        .el-form-item
-            border-bottom: 1px solid #EDF3FB
-    .content
-        .el-form-item__label
-            padding: 0 30px 0 0
-    .el-form-item__content
-        font-size: 18px
-        color: #424242
-        i
-            font-size: 14px
-    .dashboard-analytics
-        margin-top: 35px
-    .line-chart
-        position: relative
-        max-height: 400px
-        background: #377DFE
-        padding: 20px
-        box-sizing: border-box
-        overflow: hidden
-        -webkit-border-radius: 5px
-        -moz-border-radius: 5px
-        border-radius: 5px
-        -webkit-box-shadow: 0 0 12px -1px rgba(3,120,223,1)
-        -moz-box-shadow: 0 0 12px -1px rgba(3,120,223,1)
-        box-shadow: 0 5px 20px 0 rgba(3,120,223,0.6)
-    .chart-info
-        color: #fff
-        display: flex
-        flex-wrap: wrap
-        align-items: center
-        align-content: center
-        justify-content: flex-start
-        margin-bottom: 15px
-        .chart-indicator
-            max-width: 30px
-            height: 5px
-            background: rgba(255, 255, 255, 0.4)
-            border-radius: 5px
-            margin: 5px
-            margin-left: 0px
-        .on
-            background: #fff
-        .icon
-            font-size: 18px
-            margin-right: 6px
-        .amount
-            font-size: 22px
-            letter-spacing: 1px
-        .title
-            letter-spacing: 0.3px
-        .chart-info-item
-            line-height: 1.4
-            margin-right: 60px
+    .tokens-actions
+        margin-bottom: 20px
+    .transactions-list
+        min-height: 400px
 </style>

@@ -13,7 +13,7 @@ import { equals } from 'ramda'
 import VueRouter from 'vue-router'
 import routes from '@/routes'
 import store from '@/store'
-import { LOGIN, ROOT } from '../constant/routes'
+import { CONNECT, ROOT } from '../constant/routes'
 
 Vue.use(VueRouter)
 
@@ -36,10 +36,10 @@ router.beforeEach((to, from, next) => {
      * a page that requires authentication, redirect to the connect page
      */
     return next({
-      name: LOGIN
+      name: CONNECT
     })
   } else {
-    if (to.name === LOGIN && isSign) {
+    if (to.name === CONNECT && isSign) {
       return next({ name: ROOT })
     }
     return next()

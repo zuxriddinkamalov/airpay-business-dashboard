@@ -2,7 +2,7 @@
     <VBody title="User settings">
         <div slot="header">
             <el-row>
-                <el-col :xs="24" :md="12">
+                <el-col :xs="24" :sm="12">
                     <h3 class="header-id">Edit your profile info</h3>
                 </el-col>
             </el-row>

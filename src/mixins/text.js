@@ -4,6 +4,10 @@
  *
  */
 
+const isFloat = n => {
+  return Number(n) === n && n % 1 !== 0
+}
+
 export default {
   filters: {
     shortEmail: function (email) {
@@ -16,12 +20,22 @@ export default {
       }
       return text
     },
-    money: function (price) {
+    money: function (price, fixed = 3) {
       if (price) {
-        let val = parseInt(price)
+        let val
+        if (isFloat(price)) {
+          val = parseFloat(price).toFixed(fixed)
+        } else {
+          val = parseInt(price)
+        }
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
       return '0'
+    },
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   }
 }

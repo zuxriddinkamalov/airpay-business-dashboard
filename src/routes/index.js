@@ -7,12 +7,12 @@
 
 import { CONNECT, CONNECT_URL } from '../constant/routes'
 import dashboard from './dashboard'
-import transfers from './transfers'
-import distributions from './distribution'
-import crowdsales from './crowdsale'
-import tokens from './tokens'
-import users from './user'
-import settings from './settings'
+import crowdsale from './crowdsale'
+import deposit from './deposit'
+import send from './send'
+import verification from './verification'
+import help from './help'
+import terms from './terms'
 
 export default [
   {
@@ -23,12 +23,12 @@ export default [
     },
     children: [
       ...dashboard,
-      ...transfers,
-      ...distributions,
-      ...crowdsales,
-      ...tokens,
-      ...users,
-      ...settings
+      ...deposit,
+      ...send,
+      ...verification,
+      ...crowdsale,
+      ...help,
+      ...terms
     ]
   },
   {

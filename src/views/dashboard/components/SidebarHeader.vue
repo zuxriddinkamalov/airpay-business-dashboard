@@ -2,14 +2,14 @@
     <el-dropdown class="sidebar-header" trigger="click">
       <div class="el-dropdown-link">
         <div class="logo" :style="{
-            backgroundImage: `url(${activeBusiness.logo || 'images/no-logo.png'})`,
+            backgroundImage: `url(${$R.prop('logo', activeBusiness) || 'images/no-logo.png'})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundColor: '#fff'
         }"></div>
           <div class="title bold">
-              <span>{{ activeBusiness.name }}</span><i class="el-icon-arrow-down el-icon--right"></i>
+              <span>{{ $R.prop('name', activeBusiness) }}</span>
           </div>
       </div>
         <el-dropdown-menu class="sidebar-header-items" slot="dropdown">
@@ -19,7 +19,7 @@
                 :key="organization.id">
                 <div class="businesses-item">
                     <div class="logo" :style="{
-                        backgroundImage: `url(${organization.logo || 'images/no-logo.png'})`,
+                        backgroundImage: `url(${$R.prop('logo', organization) || 'images/no-logo.png'})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                     }"></div>

@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <div class="body shadow">
-            <div class="header">
+    <div class="root shadow">
+        <div class="body">
+            <div class="header" :style="{background: headerBg}">
                 <h4 v-if="title" class="title bold">{{ title }}</h4>
                 <slot name="header"></slot>
             </div>
-            <div class="content">
+            <div class="content" :style="{background: contentBg}">
                 <slot name="content"></slot>
             </div>
         </div>
@@ -19,6 +19,14 @@
 export default {
   name: 'Body',
   props: {
+    contentBg: {
+      type: String,
+      default: '#fff'
+    },
+    headerBg: {
+      type: String,
+      default: '#fff'
+    },
     title: {
       required: false,
       type: String
@@ -28,16 +36,21 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    .body
+    .root
         background: #fff
+        height: 100%
         -webkit-border-radius: 5px
         -moz-border-radius: 5px
         border-radius: 5px
-        margin-top: 10px
+        margin-bottom: 20px
+        &:last-child
+            margin-bottom: 0
+    .body
+        .content
+            padding: 0 20px 30px
     .header
-        padding: 30px 25px 25px
+        padding: 30px 20px
         .title
-            font-size: 22px
-            margin-bottom: 10px
+            font-size: 21px
             color: #404040
 </style>

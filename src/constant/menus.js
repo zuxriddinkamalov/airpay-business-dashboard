@@ -8,40 +8,70 @@ export default [
     icon: '<i class="fa fa-home" aria-hidden="true"></i>'
   },
   {
-    name: ROUTES.TRANSFERS,
-    to: ROUTES.TRANSFERS_URL,
-    title: 'Transfers',
-    icon: '<i class="fa fa-exchange-alt" aria-hidden="true"></i>'
+    name: ROUTES.DEPOSIT,
+    to: ROUTES.DEPOSIT_URL,
+    title: 'Deposit',
+    icon: '<i class="far fa-plus-square"></i>'
   },
   {
-    name: ROUTES.CROWDSALES,
-    to: ROUTES.CROWDSALES_URL,
-    title: 'Crowdsales',
+    name: ROUTES.SEND,
+    to: ROUTES.SEND_URL,
+    title: 'Send',
     icon: '<i class="fa fa-piggy-bank" aria-hidden="true"></i>'
   },
   {
-    name: ROUTES.TOKENS,
-    to: ROUTES.TOKENS_URL,
-    title: 'Tokens',
-    icon: '<i class="fa fa-coins" aria-hidden="true"></i>'
+    name: ROUTES.VERIFICATION,
+    to: ROUTES.VERIFICATION_URL,
+    title: 'Verification',
+    icon: '<i class="far fa-address-card"></i>'
   },
   {
-    name: ROUTES.USERS,
-    to: ROUTES.USERS_URL,
-    title: 'Users',
+    name: ROUTES.CROWDSALE,
+    to: ROUTES.CROWDSALE_URL,
+    title: 'Crowdsale',
     icon: '<i class="fa fa-users" aria-hidden="true"></i>',
-    divider: true
+    divider: true,
+    children: [
+      {
+        name: ROUTES.TRANSACTIONS,
+        to: ROUTES.TRANSACTIONS_URL,
+        title: 'Transactions'
+      },
+      {
+        name: ROUTES.INTERACTIONS,
+        to: ROUTES.INTERACTIONS_URL,
+        title: 'Interactions',
+        private: true
+      }
+    ]
   },
   {
-    name: ROUTES.DISTRIBUTIONS,
-    to: ROUTES.DISTRIBUTIONS_URL,
-    title: 'Wallets',
-    icon: '<i class="fas fa-wallet" aria-hidden="true"></i>'
+    name: ROUTES.HELP,
+    to: ROUTES.HELP_URL,
+    title: 'Quick help',
+    icon: '<i class="fas fa-wallet" aria-hidden="true"></i>',
+    children: [
+      {
+        name: ROUTES.WHAT_IS_GAS,
+        to: ROUTES.WHAT_IS_GAS_URL,
+        title: 'What is gas?'
+      },
+      {
+        name: ROUTES.HOW_TO_BUY,
+        to: ROUTES.HOW_TO_BUY_URL,
+        title: 'How to buy tokens?'
+      },
+      {
+        name: ROUTES.HOW_TO_CLAIM,
+        to: ROUTES.HOW_TO_CLAIM_URL,
+        title: 'How to claim tokens?'
+      }
+    ]
   },
   {
-    name: ROUTES.BUSINESS_SETTINGS,
-    to: ROUTES.BUSINESS_SETTINGS_URL,
-    title: 'Business settings',
+    name: ROUTES.TERMS,
+    to: ROUTES.TERMS_URL,
+    title: 'Terms and conditions',
     icon: '<i class="fa fa-cog" aria-hidden="true"></i>'
   }
 ]

@@ -4,7 +4,7 @@
             <div class="container-content">
                 <v-header />
                 <div class="main">
-                    <component :is="VLoginForm"></component>
+                    <component is="VLoginForm" />
                 </div>
             </div>
         </el-container>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import VHeader from './Header'
 
 import VLoginForm from './Connect'
@@ -22,11 +21,6 @@ export default {
   components: {
     VHeader,
     VLoginForm
-  },
-  computed: {
-    ...mapState([
-      'connect'
-    ])
   }
 }
 </script>
