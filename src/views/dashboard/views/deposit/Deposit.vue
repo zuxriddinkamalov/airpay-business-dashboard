@@ -34,8 +34,27 @@
                 </el-aside>
                 <el-main style="padding: 0">
                     <VBody title="2. Deposit Ethereum to your wallet">
-                        <div slot="content">
-
+                        <div slot="content" class="address-info">
+                            <div class="attention">
+                                <div class="attention-content"><span class="bold uppercase">Attention</span> Be aware tha you send
+                                BTC to correct address with correct fees amount to quickest execution</div>
+                            </div>
+                            <div class="copy-address-block">
+                                <el-input :disabled="true" v-model="address">
+                                </el-input>
+                                <el-row class="form-info" :gutter="10" justify="space-between">
+                                    <el-col :xs="24" :sm="12">
+                                        <a href="#" title="How to make deposit?">How to make deposit?</a>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="12" class="text-right">
+                                        <a
+                                            v-clipboard:copy="address"
+                                            v-clipboard:success="copySuccess"
+                                            href="#"
+                                            title="Copy to clipboard" class="bold copy">Copy to clipboard</a>
+                                    </el-col>
+                                </el-row>
+                            </div>
                         </div>
                     </VBody>
                 </el-main>
@@ -97,7 +116,16 @@ export default {
     return {
       fakeBalanceData: FAKE_BALANCE_DATA,
       fakeCurrencies: FAKE_CURRENCIES_DATA,
-      selectedCurrency: 1
+      selectedCurrency: 1,
+      address: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2'
+    }
+  },
+  methods: {
+    copySuccess: function () {
+      this.$message({
+        message: 'Successfully copied',
+        type: 'success'
+      })
     }
   },
   components: {
@@ -108,6 +136,15 @@ export default {
 </script>
 
 <style lang="sass">
+    .address-info
+        min-height: 250px
+    .copy-address-block
+        margin: 20px 0
+        .el-input.is-disabled .el-input__inner
+            font-weight: bold
+            color: #000
+        .copy
+            font-size: 17px
     .currency-select
         margin: 0 -20px
         text-align: left
@@ -117,6 +154,9 @@ export default {
                 background-color: var(--primary-color)
                 color: #fff
             .el-radio-button__inner
+                -webkit-border-radius: 0
+                -moz-border-radius: 0
+                border-radius: 0
                 text-align: left
                 font-size: 18px
                 color: #000
@@ -124,7 +164,15 @@ export default {
                 width: 100%
                 border: none
                 padding: 20px 30px
+                position: relative
+                &:after
+                    color: #C5C5C5
+                    content: '\2192'
+                    position: absolute
+                    right: 10px
+                    top: 15px
+                    font-size: 25px
                 & i
-                    font-size: 17px
+                    margin-right: 15px
                     vertical-align: middle
 </style>

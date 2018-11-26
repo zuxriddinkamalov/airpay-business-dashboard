@@ -7,6 +7,7 @@ import Vue from 'vue'
  */
 import './plugins/vuex'
 import './plugins/font-awesome'
+import './plugins/vue-clipboard'
 import './plugins/element-ui'
 import './plugins/vuex-router-sync'
 import './plugins/vue-ramda'

@@ -46,7 +46,11 @@ export default {
         &:last-child
             margin-bottom: 0
     .body
+        height: 100%
+        display: flex
+        flex-direction: column
         .content
+            flex-grow: 2
             padding: 0 20px 30px
     .header
         padding: 30px 20px
