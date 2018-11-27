@@ -34,7 +34,7 @@ export default {
       type: String
     }
   }
-}
+};
 </script>
 
 <style lang="sass" scoped>
@@ -58,6 +58,6 @@ export default {
     .header
         padding: 30px 20px
         .title
-            font-size: 21px
+            font-size: 23px
             color: inherit
 </style>

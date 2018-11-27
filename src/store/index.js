@@ -7,16 +7,15 @@
  * http://vuex.vuejs.org/en/index.html
  */
 
-import Vuex from 'vuex'
-import createLogger from 'vuex/dist/logger'
+import Vuex from 'vuex';
+import createLogger from 'vuex/dist/logger';
 
 // Modules
-import connect from './modules/connect'
-import general from './modules/general'
-import dashboard from './modules/dashboard'
+import connect from './modules/connect';
+import general from './modules/general';
+import dashboard from './modules/dashboard';
 
-const debug = process.env.NODE_ENV !== 'production'
-
+const debug = process.env.NODE_ENV !== 'production';
 export default new Vuex.Store({
   ...general,
   /**
@@ -37,4 +36,4 @@ export default new Vuex.Store({
    * Plugins used in the store.
    */
   plugins: debug ? [createLogger()] : []
-})
+});

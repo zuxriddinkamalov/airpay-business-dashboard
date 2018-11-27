@@ -6,7 +6,7 @@
             </el-button>
         </el-col>
         <el-col class="logo-container">
-            <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
+
             <el-dropdown class="sidebar-header" trigger="click">
                 <div class="el-dropdown-link">
                     <div class="logo" :style="{
@@ -30,40 +30,45 @@
                     </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
+                <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
         </el-col>
     </el-row>
 </template>
 
 <script>
-import { USER_SETTINGS } from '../../../constant/routes'
+import { USER_SETTINGS } from '../../../constant/routes';
 
 export default {
   name: 'Header',
-  data: function () {
+  data: function() {
     return {
       user: {
-        logo: 'https://s3.us-east-2.amazonaws.com/airpay-network/logo/dappband_logo.jpg',
+        logo:
+          'https://s3.us-east-2.amazonaws.com/airpay-network/logo/dappband_logo.jpg',
         name: 'Rob Johnson'
       }
-    }
+    };
   },
   methods: {
-    openSettings: function () {
+    openSettings: function() {
       this.$router.push({
         name: USER_SETTINGS
-      })
+      });
     },
-    logout: function () {
-      sessionStorage.removeItem('token')
-      location.reload(true)
+    logout: function() {
+      sessionStorage.removeItem('token');
+      location.reload(true);
     }
   }
-}
+};
 </script>
 
 <style lang="sass">
 .verification-button
     position: relative
+    background: #FFFFFF
+    box-shadow: 0 4px 14px 0 rgba(0,0,0,0.06)
+    border: 0
     padding: 12px 50px 12px 30px
     &:after
         color: #C5C5C5
@@ -111,9 +116,10 @@ export default {
         align-items: center
         cursor: pointer
         .user-name
+            font-size: 18px
             padding: 0 10px 0 15px
 .settings-button
     color: #9CAAC5
     font-size: 23px
-    margin-right: 15px
+    margin-left: 15px
 </style>

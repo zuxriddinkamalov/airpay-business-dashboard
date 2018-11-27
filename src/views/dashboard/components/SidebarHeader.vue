@@ -2,60 +2,39 @@
     <el-dropdown class="sidebar-header" trigger="click">
       <div class="el-dropdown-link">
         <div class="logo" :style="{
-            backgroundImage: `url(${$R.prop('logo', activeBusiness) || 'images/no-logo.png'})`,
+            backgroundImage: `url(${$R.prop('logo', activeBusiness) || 'https://s3.us-east-2.amazonaws.com/airpay-network/logo/dappband_logo.jpg'})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundColor: '#fff'
         }"></div>
           <div class="title bold">
-              <span>{{ $R.prop('name', activeBusiness) }}</span>
+              <span>Moco</span>
           </div>
       </div>
-        <el-dropdown-menu class="sidebar-header-items" slot="dropdown">
-            <el-dropdown-item
-                v-for="organization in organizations"
-                @click.native="changeOrganization(organization.id)"
-                :key="organization.id">
-                <div class="businesses-item">
-                    <div class="logo" :style="{
-                        backgroundImage: `url(${$R.prop('logo', organization) || 'images/no-logo.png'})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                    }"></div>
-                    <div class="business-name">
-                        {{ organization.name }}
-                    </div>
-                </div>
-            </el-dropdown-item>
-            <el-dropdown-item
-                divided
-                @click.native="createBusiness">
-                Create business
-            </el-dropdown-item>
-        </el-dropdown-menu>
+
     </el-dropdown>
 </template>
 
 <script>
-import { propEq, find, equals } from 'ramda'
-import { mapState } from 'vuex'
-import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-types'
+import { propEq, find, equals } from 'ramda';
+import { mapState } from 'vuex';
+import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-types';
 
 export default {
   name: 'SidebarHeader',
   methods: {
-    changeOrganization: function (businessId) {
-      let activeBusiness = find(propEq('id', businessId))(this.organizations)
+    changeOrganization: function(businessId) {
+      let activeBusiness = find(propEq('id', businessId))(this.organizations);
       if (!equals(activeBusiness, this.activeBusiness)) {
         this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
           key: 'activeBusiness',
           value: activeBusiness
-        })
+        });
       }
     },
-    createBusiness: function () {
-      console.warn('Create business')
+    createBusiness: function() {
+      console.warn('Create business');
     }
   },
   computed: {
@@ -64,7 +43,7 @@ export default {
       activeBusiness: state => state.dashboard.activeBusiness
     })
   }
-}
+};
 </script>
 
 <style lang="sass" scoped>

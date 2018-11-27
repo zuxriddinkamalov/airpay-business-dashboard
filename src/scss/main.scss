@@ -98,9 +98,9 @@ input[type='number']::-webkit-outer-spin-button {
   font-family: SourceSansPro-Semibold, sans-serif;
   font-size: 17px;
   letter-spacing: 0.46px;
-  -webkit-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color),0.53);
-  -moz-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color),0.53);
-  box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color),0.53);
+  -webkit-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
+  -moz-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
+  box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
 }
 
 .uppercase {
@@ -124,18 +124,18 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .el-select {
-  width: 100%
+  width: 100%;
 }
 
 .label {
   font-family: SourceSansPro-Regular, sans-serif;
   font-size: 18px;
-  color: #8E8E8E;
+  color: #8e8e8e;
 }
 
 .input-button {
   padding: 0 10px;
-  color: #377dfe!important;
+  color: #377dfe !important;
 }
 .el-input__inner {
   font-family: SourceSansPro-Regular, sans-serif;
@@ -180,16 +180,18 @@ input[type='number']::-webkit-outer-spin-button {
     font-size: 17px;
   }
   & input:focus ~ .el-input-group__append {
-    border: 1px solid #377DFE;
+    border: 1px solid #377dfe;
     border-left: none;
   }
-  .el-input-group__append, .el-input-group__prepend {
+  .el-input-group__append,
+  .el-input-group__prepend {
     background: transparent;
   }
-  & input[disabled="disabled"] {
-    color: #000!important;
-    & ~ .el-input-group__append, & input[disabled="disabled"] .el-input-group__prepend  {
-      background: #f5f7fa
+  & input[disabled='disabled'] {
+    color: #000 !important;
+    & ~ .el-input-group__append,
+    & input[disabled='disabled'] .el-input-group__prepend {
+      background: #f5f7fa;
     }
   }
   .el-input-group--append .el-input__inner {
@@ -204,7 +206,7 @@ input[type='number']::-webkit-outer-spin-button {
 .help-url {
   font-size: 17px;
   a {
-    color: var(--primary-color)
+    color: var(--primary-color);
   }
 }
 
@@ -218,12 +220,12 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background: #EDFEE3;
+  background: #edfee3;
   padding: 2px 5px 2px 13px;
   position: relative;
   &:after {
     position: absolute;
-    color: #59ED72;
+    color: #59ed72;
     font-size: 15px;
     content: '\2022';
     left: 5px;
@@ -299,7 +301,7 @@ input[type='number']::-webkit-outer-spin-button {
     padding-right: 50px;
     position: relative;
     &:after {
-      color: #C5C5C5;
+      color: #c5c5c5;
       content: '\2192';
       position: absolute;
       right: 10px;
@@ -313,7 +315,7 @@ input[type='number']::-webkit-outer-spin-button {
   .transaction-row {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #F1F1F1;
+    border-bottom: 1px solid #f1f1f1;
     display: flex;
     justify-content: space-between;
     .transactions-list-row {
@@ -331,13 +333,13 @@ input[type='number']::-webkit-outer-spin-button {
       }
       .send {
         font-size: 22px;
-        color: #F89D9D;
+        color: #f89d9d;
         line-height: 0.7;
         margin-right: 10px;
       }
       .receive {
         font-size: 22px;
-        color: #A3D9A9;
+        color: #a3d9a9;
         line-height: 0.7;
         margin-right: 10px;
       }
@@ -353,7 +355,7 @@ input[type='number']::-webkit-outer-spin-button {
   color: #979590;
   margin-bottom: 15px;
   &:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
   .buy-status-header {
     position: relative;
@@ -375,7 +377,7 @@ input[type='number']::-webkit-outer-spin-button {
       position: relative;
       padding-right: 40px;
       &:after {
-        color: #C5C5C5;
+        color: #c5c5c5;
         content: '\2192';
         position: absolute;
         right: 0;
@@ -388,33 +390,33 @@ input[type='number']::-webkit-outer-spin-button {
     line-height: 1.2;
   }
   &.pending {
-    background: #FEF7E3;
+    background: #fef7e3;
     .buy-status-header {
       &:before {
-        color: #FD9739;
+        color: #fd9739;
       }
     }
   }
   &.success {
-    background: #EDFEE3;
+    background: #edfee3;
     .buy-status-header {
       &:before {
-        color: #59ED72;
+        color: #59ed72;
       }
     }
   }
   &.failed {
-    background: #FEE2E2;
+    background: #fee2e2;
     .buy-status-header {
       &:before {
-        color: #FE2121;
+        color: #fe2121;
       }
     }
   }
 }
 
 .attention {
-  background: #F2F4F6;
+  background: #f2f4f6;
   padding: 10px;
   color: #858686;
   border-radius: 5px;

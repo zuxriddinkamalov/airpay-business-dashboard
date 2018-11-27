@@ -41,7 +41,7 @@
                         <div v-for="transaction in fakeTransactionsData" :key="transaction.id" class="transaction-row">
                             <div class="transactions-list-row">
                                 <div class="row-title">Tx Hash</div>
-                                <div class="row-value tx-hash">{{ transaction.txHash | slice(20)}}<i class="far fa-edit"></i></div>
+                                <div class="row-value tx-hash">{{ transaction.txHash | slice(20)}}<i class="fas fa-external-link-alt"></i></div>
                             </div>
                             <div class="transactions-list-row">
                                 <div class="row-title">Date</div>
@@ -78,11 +78,11 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text'
-import TimeMixin from '@/mixins/time'
-import VBody from '../../components/Body'
-import VBuyTokens from './components/BuyTokens'
-import VUnlockTokens from './components/UnlockTokens'
+import TextMixin from '@/mixins/text';
+import TimeMixin from '@/mixins/time';
+import VBody from '../../components/Body';
+import VBuyTokens from './components/BuyTokens';
+import VUnlockTokens from './components/UnlockTokens';
 
 const FAKE_BALANCE_DATA = [
   {
@@ -103,7 +103,7 @@ const FAKE_BALANCE_DATA = [
     balance: 23333,
     currency: 'MOCO'
   }
-]
+];
 
 const FAKE_TRANSACTIONS_DATA = [
   {
@@ -158,15 +158,15 @@ const FAKE_TRANSACTIONS_DATA = [
       amount: 14388
     }
   }
-]
+];
 
 export default {
   name: 'Dashboard',
-  data: function () {
+  data: function() {
     return {
       fakeBalanceData: FAKE_BALANCE_DATA,
       fakeTransactionsData: FAKE_TRANSACTIONS_DATA
-    }
+    };
   },
   mixins: [TextMixin, TimeMixin],
   components: {
@@ -174,7 +174,7 @@ export default {
     VBuyTokens,
     VUnlockTokens
   }
-}
+};
 </script>
 
 <style lang="sass">

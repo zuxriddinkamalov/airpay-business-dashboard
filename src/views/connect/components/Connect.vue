@@ -9,10 +9,6 @@
                         label="Metamask"
                         value="metamask">
                     </el-option>
-                    <el-option
-                        label="Trezer"
-                        value="trezer">
-                    </el-option>
                 </el-select>
                 <div class="help-url bold">
                     <a href="#" @click.prevent="helpDialog=true" title="How to get ethereum wallet?">How to get ethereum wallet?</a>
@@ -78,51 +74,60 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text'
-import { prepareValidateErrors } from '../../../helpers/errors'
-import { SET_CONNECT_STATE } from '../../../store/modules/connect/mutation-types'
-import { ROOT } from '../../../constant/routes'
+import TextMixin from '@/mixins/text';
+import { prepareValidateErrors } from '../../../helpers/errors';
+import { SET_CONNECT_STATE } from '../../../store/modules/connect/mutation-types';
+import { ROOT } from '../../../constant/routes';
 
 export default {
   name: 'ConnectForm',
-  data: function () {
+  data: function() {
     return {
       loading: false,
       form: {
         method: 'metamask'
       },
       helpDialog: false
-    }
+    };
   },
   methods: {
-    connectSubmit (formName) {
-      this.$refs[formName].validate((valid, error) => {
+    async connectSubmit(formName) {
+      this.$refs[formName].validate(async (valid, error) => {
         if (valid) {
-          let self = this
-          this.loading = true
-          setTimeout(function () {
-            self.$store.commit(`connect/${SET_CONNECT_STATE}`, {
-              key: 'sign',
-              value: true
-            })
-            self.$router.push({
-              name: ROOT
-            })
-          }, 5000)
+          let self = this;
+          this.loading = true;
+          try {
+            await self.$store.dispatch('connect/sign');
+          } catch (error) {
+            let message = prepareValidateErrors(error);
+            this.$message({
+              dangerouslyUseHTMLString: true,
+              type: 'error',
+              message: error
+            });
+            return false;
+          } finally {
+            console.log(ROOT);
+            setTimeout(function() {
+              self.$router.push({
+                name: ROOT
+              });
+            }, 5000);
+          }
         } else {
-          let message = prepareValidateErrors(error)
+          let message = prepareValidateErrors(error);
           this.$message({
             dangerouslyUseHTMLString: true,
             type: 'error',
             message: message
-          })
-          return false
+          });
+          return false;
         }
-      })
+      });
     }
   },
   mixins: [TextMixin]
-}
+};
 </script>
 
 <style lang="sass">

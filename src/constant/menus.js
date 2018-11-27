@@ -1,23 +1,23 @@
-import * as ROUTES from './routes'
+import * as ROUTES from './routes';
 
 export default [
   {
     name: ROUTES.ROOT,
     to: ROUTES.ROOT_URL,
-    title: 'Dashboard',
+    title: 'Home',
     icon: '<i class="fa fa-home" aria-hidden="true"></i>'
   },
   {
     name: ROUTES.DEPOSIT,
     to: ROUTES.DEPOSIT_URL,
     title: 'Deposit',
-    icon: '<i class="far fa-plus-square"></i>'
+    icon: '<i class="fas fa-plus-circle"></i>'
   },
   {
     name: ROUTES.SEND,
     to: ROUTES.SEND_URL,
     title: 'Send',
-    icon: '<i class="fa fa-piggy-bank" aria-hidden="true"></i>'
+    icon: '<i class="fas fa-exchange-alt" aria-hidden="true"></i>'
   },
   {
     name: ROUTES.VERIFICATION,
@@ -29,8 +29,9 @@ export default [
     name: ROUTES.CROWDSALE,
     to: ROUTES.CROWDSALE_URL,
     title: 'Crowdsale',
-    icon: '<i class="fa fa-users" aria-hidden="true"></i>',
+    icon: '<i class="fas fa-sitemap"></i>',
     divider: true,
+    private: true,
     children: [
       {
         name: ROUTES.TRANSACTIONS,
@@ -40,8 +41,22 @@ export default [
       {
         name: ROUTES.INTERACTIONS,
         to: ROUTES.INTERACTIONS_URL,
-        title: 'Interactions',
-        private: true
+        title: 'Tokens'
+      },
+      {
+        name: ROUTES.INTERACTIONS,
+        to: ROUTES.INTERACTIONS_URL,
+        title: 'Rates'
+      },
+      {
+        name: ROUTES.INTERACTIONS,
+        to: ROUTES.INTERACTIONS_URL,
+        title: 'Whitelist'
+      },
+      {
+        name: ROUTES.INTERACTIONS,
+        to: ROUTES.INTERACTIONS_URL,
+        title: 'Ownership'
       }
     ]
   },
@@ -49,7 +64,7 @@ export default [
     name: ROUTES.HELP,
     to: ROUTES.HELP_URL,
     title: 'Quick help',
-    icon: '<i class="fas fa-wallet" aria-hidden="true"></i>',
+    icon: '<i class="far fa-question-circle" aria-hidden="true"></i>',
     children: [
       {
         name: ROUTES.WHAT_IS_GAS,
@@ -74,4 +89,4 @@ export default [
     title: 'Terms and conditions',
     icon: '<i class="fa fa-cog" aria-hidden="true"></i>'
   }
-]
+];
