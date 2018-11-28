@@ -44,7 +44,7 @@
 import TextMixin from '@/mixins/text';
 import TimeMixin from '@/mixins/time';
 import VBody from '../../../components/Body';
-import { getLastTransactions } from '../../../../../helpers/web3';
+import { getLastTransactions } from '@/helpers/web3';
 
 export default {
   name: 'LastTransactions',
@@ -56,7 +56,7 @@ export default {
   },
   mixins: [TextMixin, TimeMixin],
   created() {
-    this.getLastTransactionsData;
+    this.getLastTransactionsData();
   },
   methods: {
     getLastTransactionsData() {

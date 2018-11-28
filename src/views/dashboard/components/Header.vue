@@ -15,7 +15,7 @@
                         backgroundColor: '#fff'
                     }">{{logo}}</div>
                     <div class="user-name bold">{{ user.name }}</div>
-                    <div class="owner uppercase bold">owner</div>
+                    <div class="owner uppercase bold">mainnet</div>
                 </div>
                 <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
                 <el-button class="settings-button" type="text" @click.native="logout"><i class="fas fa-sign-out-alt"></i></el-button>

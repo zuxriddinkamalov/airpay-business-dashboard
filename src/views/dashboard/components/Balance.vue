@@ -28,7 +28,13 @@
   </div>
 </template>
 <script>
-import { web3, addr, getEthBalance } from '../../../helpers/web3';
+import {
+  web3,
+  addr,
+  getEthBalance,
+  getTokenBalance,
+  getBTCBalance
+} from '../../../helpers/web3';
 
 export default {
   name: 'VBalance',
@@ -39,14 +45,46 @@ export default {
     };
   },
   created() {
-    this.getBalanceData();
+    this.getBalanceEthData();
+    this.getBalanceTokenData();
+    this.getBalanceBTCData();
   },
   methods: {
-    getBalanceData() {
+    getBalanceEthData() {
       this.loading = true;
       getEthBalance()
         .then(balance => {
-          this.data = balance;
+          const asset = this.data;
+          asset[0] = balance;
+          this.data = [...asset];
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getBalanceTokenData() {
+      this.loading = true;
+
+      getTokenBalance()
+        .then(balance => {
+          const asset = this.data;
+          asset[2] = balance;
+          this.data = [...asset];
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getBalanceBTCData() {
+      this.loading = true;
+
+      getBTCBalance()
+        .then(balance => {
+          const asset = this.data;
+          asset[1] = balance;
+          this.data = [...asset];
           this.loading = false;
         })
         .catch(error => {

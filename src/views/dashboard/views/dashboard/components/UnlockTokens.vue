@@ -15,7 +15,7 @@
                 </el-form-item>
 
                 <el-form-item class="input-with-button">
-                    <el-input :disabled="true" class="amount" :value="21232233 | money">
+                    <el-input :disabled="true" class="amount" :value="lockedAmount | money">
                         <span slot="append">MOCO</span>
                     </el-input>
                     <el-row class="form-info" :gutter="10" justify="space-between">
@@ -39,24 +39,41 @@
 </template>
 
 <script>
-import TimeMixin from '@/mixins/time'
-import TextMixin from '@/mixins/text'
-import VBody from '../../../components/Body'
+import TimeMixin from '@/mixins/time';
+import TextMixin from '@/mixins/text';
+import VBody from '../../../components/Body';
+import { web3, getLockedTokenBalance } from '@/helpers/web3';
 
 export default {
   name: 'UnlockTokens',
-  data: function () {
+  data: function() {
     return {
-      form: {
+      lockedAmount: 0,
+      form: {}
+    };
+  },
+  created() {
+    this.getLockedTokenBalanceData();
+  },
+  methods: {
+    getLockedTokenBalanceData() {
+      this.loading = true;
 
-      }
+      getLockedTokenBalance()
+        .then(balance => {
+          this.lockedAmount = balance;
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   components: {
     VBody
   },
   mixins: [TimeMixin, TextMixin]
-}
+};
 </script>
 
 <style lang="sass" scoped>
