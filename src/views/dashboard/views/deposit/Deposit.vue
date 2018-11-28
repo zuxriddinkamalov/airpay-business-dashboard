@@ -68,12 +68,8 @@ const FAKE_CURRENCIES_DATA = [
 
 export default {
   name: 'Deposit',
-  components: {
-    VBalance
-  },
   data: function() {
     return {
-      fakeBalanceData: FAKE_BALANCE_DATA,
       fakeCurrencies: FAKE_CURRENCIES_DATA,
       selectedCurrency: 1,
       address: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2'
@@ -88,7 +84,8 @@ export default {
     }
   },
   components: {
-    VBody
+    VBody,
+    VBalance
   },
   mixins: [TextMixin, TimeMixin]
 };

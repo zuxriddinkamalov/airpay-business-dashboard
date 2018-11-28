@@ -2,9 +2,10 @@
 
     <div class="balance">
         <div class="title bold">Balances</div>
-        <el-row type="flex" class="balance-content">
+        <div v-if="loading">Loading...</div>
+        <el-row type="flex" class="balance-content" v-if="!loading">
             <el-col :xs="24" class="balance-list">
-                <div :key="account.abbreviation" v-for="account in fakeBalanceData" class="account">
+                <div :key="account.abbreviation" v-for="account in data" class="account">
                     <div class="account-header">
                         <div class="account-header-title">
                             {{ account.name }}
@@ -17,38 +18,41 @@
                     </div>
                 </div>
             </el-col>
+            <el-col class="balance-button" :xs="24" :md="5">
+                   <el-button class="make-deposit">
+                       <span class="bold">Make deposit</span>
+                   </el-button>
+               </el-col>
         </el-row>
 
   </div>
 </template>
 <script>
-const FAKE_BALANCE_DATA = [
-  {
-    name: 'Ethereum',
-    icon: '<i class="fab fa-ethereum"></i>',
-    balance: 1.233,
-    currency: 'ETH'
-  },
-  {
-    name: 'Bitcoin',
-    icon: '<i class="fab fa-btc"></i>',
-    balance: 13332.233,
-    currency: 'BTC'
-  },
-  {
-    name: 'Moco',
-    icon: '<i class="fas fa-coins"></i>',
-    balance: 23333,
-    currency: 'MOCO'
-  }
-];
+import { web3, addr, getEthBalance } from '../../../helpers/web3';
 
 export default {
   name: 'VBalance',
   data: function() {
     return {
-      fakeBalanceData: FAKE_BALANCE_DATA
+      loading: false,
+      data: []
     };
+  },
+  created() {
+    this.getBalanceData();
+  },
+  methods: {
+    getBalanceData() {
+      this.loading = true;
+      getEthBalance()
+        .then(balance => {
+          this.data = balance;
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
