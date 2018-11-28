@@ -18,13 +18,14 @@
                 <el-form-item class="input-with-button" prop="amount">
                     <el-input class="amount" autofocus="true" type="number" v-model="form.amount">
                         <el-select class="currency" v-model="form.currency" slot="append">
+                           <el-option label="ETH" value="eth"></el-option>
                             <el-option label="BTC" value="btc"></el-option>
-                            <el-option label="ETH" value="eth"></el-option>
+
                         </el-select>
                     </el-input>
                     <el-row class="form-info" :gutter="10" justify="space-between">
                         <el-col :xs="24" :sm="12">
-                            <span>Min contribution: 0.1 BTC</span>
+                            <span>Min contribution: 0.1 ETH</span>
                         </el-col>
                         <el-col :xs="24" :sm="12" class="text-right">
                             <a href="#" title="Contribute entire balance" class="bold">Contribute entire balance</a>
@@ -59,10 +60,10 @@
 </template>
 
 <script>
-import { map } from 'ramda'
-import VBody from '../../../components/Body'
-import { prepareValidateErrors } from '../../../../../helpers/errors'
-import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types'
+import { map } from 'ramda';
+import VBody from '../../../components/Body';
+import { prepareValidateErrors } from '../../../../../helpers/errors';
+import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types';
 
 const SLIDER = [
   {
@@ -89,64 +90,61 @@ const SLIDER = [
     sum: 4.9,
     currency: 'BTC'
   }
-]
+];
 
 export default {
   name: 'BuyTokenForm',
-  data: function () {
+  data: function() {
     return {
       form: {
-        amount: '',
-        currency: 'btc'
+        amount: '1',
+        currency: 'eth'
       }
-    }
+    };
   },
   methods: {
-    submit: function (formName) {
+    submit: function(formName) {
       if (this.loading) {
-        return
+        return;
       }
       this.$refs[formName].validate((valid, error) => {
         if (valid) {
-          this.$store.commit(`dashboard/home/${SET_HOME_DATA}`, {
-            key: 'buyTokenTab',
-            value: 'VBuyTokenStatus'
-          })
+          this.$store.dispatch('dashboard/home/buyTokens', {
+            amount: 1
+          });
         } else {
-          let message = prepareValidateErrors(error)
+          let message = prepareValidateErrors(error);
           this.$message({
             dangerouslyUseHTMLString: true,
             type: 'error',
             message: message
-          })
-          return false
+          });
+          return false;
         }
-      })
+      });
     }
   },
   computed: {
-    sliderText: function () {
+    sliderText: function() {
       return map(
         item =>
           `<img class="flag" src="${item.flag}" alt="" />
         User from <span class="bold">${
-  item.country
-}</span> pledge <span class="bold">${item.sum} ${item.currency}</span>`,
+          item.country
+        }</span> pledge <span class="bold">${item.sum} ${item.currency}</span>`,
         SLIDER
-      )
+      );
     },
-    rulesBuyToken: function () {
+    rulesBuyToken: function() {
       let checkZero = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('Amount is required'))
+          callback(new Error('Amount is required'));
         } else if (value < 1) {
-          callback(
-            new Error(`Amount can not be less then ${1}`)
-          )
+          callback(new Error(`Amount can not be less then ${1}`));
         } else {
-          callback()
+          callback();
         }
-      }
+      };
       return {
         amount: [
           {
@@ -154,13 +152,13 @@ export default {
             trigger: ['submit', 'blur']
           }
         ]
-      }
+      };
     }
   },
   components: {
     VBody
   }
-}
+};
 </script>
 
 <style lang="sass">

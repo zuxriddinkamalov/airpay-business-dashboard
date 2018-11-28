@@ -1,7 +1,7 @@
 <template>
     <VBody title="Buy token in process">
         <div slot="content">
-            <div class="buy-status pending">
+            <div class="buy-status pending" v-if="status == 'PENDING' || status == 'SUCCESS'">
                 <div class="buy-status-header">
                     <div class="title bold">Transaction pending</div>
                     <div class="currency">Etherscan</div>
@@ -10,7 +10,7 @@
                     Your transaction was pending and get tx hash, you can track it using Etherscan.
                 </div>
             </div>
-            <div class="buy-status success">
+            <div class="buy-status success" v-if="status == 'SUCCESS'">
                 <div class="buy-status-header">
                     <div class="title bold">Transaction success</div>
                     <div class="currency">Etherscan</div>
@@ -19,7 +19,7 @@
                     Your transaction was pending and get tx hash, you can track it using Etherscan.
                 </div>
             </div>
-            <div class="buy-status failed">
+            <div class="buy-status failed" v-if="status == 'FAILED'">
                 <div class="buy-status-header">
                     <div class="title bold">Transaction failed</div>
                     <div class="currency">Etherscan</div>
@@ -36,37 +36,34 @@
 </template>
 
 <script>
-import VBody from '../../../components/Body'
-import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types'
+import VBody from '../../../components/Body';
+import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types';
 
 export default {
   name: 'BuyTokenStatus',
-  data: function () {
+  data: function() {
     return {
       status: 'PENDING'
-    }
+    };
   },
-  mounted () {
-    let self = this
+  mounted() {
+    let self = this;
     setTimeout(() => {
-      self.status = 'SUCCESS'
-      setTimeout(() => {
-        self.status = 'FAILED'
-      }, 3000)
-    }, 3000)
+      self.status = 'SUCCESS';
+    }, 3000);
   },
   methods: {
-    gotoMain () {
+    gotoMain() {
       this.$store.commit(`dashboard/home/${SET_HOME_DATA}`, {
         key: 'buyTokenTab',
         value: 'VBuyTokenForm'
-      })
+      });
     }
   },
   components: {
     VBody
   }
-}
+};
 </script>
 
 <style lang="sass">

@@ -1,24 +1,6 @@
 <template>
     <div>
-        <div class="balance">
-            <div class="title bold">Balances</div>
-            <el-row type="flex" class="balance-content">
-                <el-col :xs="24" class="balance-list">
-                    <div :key="account.abbreviation" v-for="account in fakeBalanceData" class="account">
-                        <div class="account-header">
-                            <div class="account-header-title">
-                                {{ account.name }}
-                            </div>
-                            <div class="account-header-icon" v-html="account.icon"></div>
-                        </div>
-                        <div class="balance-value">
-                            <span class="value">{{ account.balance | money }}</span>
-                            <span class="currency uppercase">{{ account.currency }}</span>
-                        </div>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
+        <VBalance />
         <div class="deposit-block">
             <el-container>
                 <el-aside width="250px">
@@ -64,14 +46,15 @@
 </template>
 
 <script>
-import VBody from '../../components/Body'
-import TextMixin from '@/mixins/text'
-import TimeMixin from '@/mixins/time'
+import VBody from '../../components/Body';
+import VBalance from '../../components/Balance';
+import TextMixin from '@/mixins/text';
+import TimeMixin from '@/mixins/time';
 
 const FAKE_CURRENCIES_DATA = [
   {
     id: 1,
-    name: 'Ehhereum',
+    name: 'Ethereum',
     icon: '<i class="fab fa-ethereum"></i>',
     symbol: 'ETH'
   },
@@ -80,59 +63,35 @@ const FAKE_CURRENCIES_DATA = [
     name: 'Bitcoin',
     icon: '<i class="fab fa-btc"></i>',
     symbol: 'BTC'
-  },
-  {
-    id: 3,
-    name: 'Moco',
-    icon: '<i class="fab fa-btc"></i>',
-    symbol: 'MOCO'
   }
-]
-
-const FAKE_BALANCE_DATA = [
-  {
-    name: 'Ehhereum',
-    icon: '<i class="fab fa-ethereum"></i>',
-    balance: 1.233,
-    currency: 'ETH'
-  },
-  {
-    name: 'Bitcoin',
-    icon: '<i class="fab fa-btc"></i>',
-    balance: 13332.233,
-    currency: 'BTC'
-  },
-  {
-    name: 'Moco',
-    icon: '<i class="fab fa-btc"></i>',
-    balance: 23333,
-    currency: 'MOCO'
-  }
-]
+];
 
 export default {
   name: 'Deposit',
-  data: function () {
+  components: {
+    VBalance
+  },
+  data: function() {
     return {
       fakeBalanceData: FAKE_BALANCE_DATA,
       fakeCurrencies: FAKE_CURRENCIES_DATA,
       selectedCurrency: 1,
       address: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2'
-    }
+    };
   },
   methods: {
-    copySuccess: function () {
+    copySuccess: function() {
       this.$message({
         message: 'Successfully copied',
         type: 'success'
-      })
+      });
     }
   },
   components: {
     VBody
   },
   mixins: [TextMixin, TimeMixin]
-}
+};
 </script>
 
 <style lang="sass">

@@ -2,14 +2,14 @@
     <el-dropdown class="sidebar-header" trigger="click">
       <div class="el-dropdown-link">
         <div class="logo" :style="{
-            backgroundImage: `url(${$R.prop('logo', activeBusiness) || 'https://s3.us-east-2.amazonaws.com/airpay-network/logo/dappband_logo.jpg'})`,
+            backgroundImage: `url(${logo})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundColor: '#fff'
         }"></div>
           <div class="title bold">
-              <span>Moco</span>
+              <span>{{name}}</span>
           </div>
       </div>
 
@@ -20,7 +20,7 @@
 import { propEq, find, equals } from 'ramda';
 import { mapState } from 'vuex';
 import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-types';
-
+import { LOGO, NAME } from '../../../constant/general';
 export default {
   name: 'SidebarHeader',
   methods: {
@@ -36,6 +36,12 @@ export default {
     createBusiness: function() {
       console.warn('Create business');
     }
+  },
+  data: function() {
+    return {
+      logo: LOGO,
+      name: NAME
+    };
   },
   computed: {
     ...mapState({

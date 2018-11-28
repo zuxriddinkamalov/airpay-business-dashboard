@@ -7,44 +7,31 @@
         </el-col>
         <el-col class="logo-container">
 
-            <el-dropdown class="sidebar-header" trigger="click">
                 <div class="el-dropdown-link">
                     <div class="logo" :style="{
-                        backgroundImage: `url(${user.logo})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundColor: '#fff'
-                    }"></div>
+                    }">{{logo}}</div>
                     <div class="user-name bold">{{ user.name }}</div>
                     <div class="owner uppercase bold">owner</div>
                 </div>
-                <el-dropdown-menu class="sidebar-header-items" slot="dropdown">
-                    <el-dropdown-item @click.native="openSettings">
-                        <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
-                        Settings
-                    </el-dropdown-item>
-                    <el-dropdown-item divided @click.native="logout">
-                        <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                        Logout
-                    </el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
                 <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
+                <el-button class="settings-button" type="text" @click.native="logout"><i class="fas fa-sign-out-alt"></i></el-button>
         </el-col>
     </el-row>
 </template>
 
 <script>
 import { USER_SETTINGS } from '../../../constant/routes';
-
+import { generateBlockies } from '../../../helpers/blockies';
 export default {
   name: 'Header',
   data: function() {
     return {
       user: {
-        logo:
-          'https://s3.us-east-2.amazonaws.com/airpay-network/logo/dappband_logo.jpg',
+        logo: generateBlockies(),
         name: 'Rob Johnson'
       }
     };
@@ -89,11 +76,13 @@ export default {
     display: flex
     justify-content: flex-end
 .owner
-    font-size: 9px
+    font-size: 12px
     -webkit-border-radius: 10px
     -moz-border-radius: 10px
     border-radius: 10px
     background: #EDFEE3
+    color: #777777
+    letter-spacing: 0.5px
     padding: 2px 5px 2px 13px
     position: relative
 
@@ -119,7 +108,7 @@ export default {
             font-size: 18px
             padding: 0 10px 0 15px
 .settings-button
-    color: #9CAAC5
+    color: #888888
     font-size: 23px
-    margin-left: 15px
+    margin-left: 25px
 </style>

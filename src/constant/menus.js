@@ -29,7 +29,7 @@ export default [
     name: ROUTES.CROWDSALE,
     to: ROUTES.CROWDSALE_URL,
     title: 'Crowdsale',
-    icon: '<i class="fas fa-sitemap"></i>',
+    icon: '<i class="fab fa-connectdevelop"></i>',
     divider: true,
     private: true,
     children: [
@@ -87,6 +87,6 @@ export default [
     name: ROUTES.TERMS,
     to: ROUTES.TERMS_URL,
     title: 'Terms and conditions',
-    icon: '<i class="fa fa-cog" aria-hidden="true"></i>'
+    icon: '<i class="fas fa-clipboard-check"></i>'
   }
 ];

@@ -6,8 +6,9 @@ export const SIGN_MSG = [
   }
 ];
 
-export const CROWDSALE_ADDR = '0x00';
-export const TOKEN_ADDR = '0x00';
+export const CROWDSALE_ADDR = '0xcaf461a0b9325b2a26bd802a352a8c9f638b3877';
+export const BTC_ADDR = '0x099';
+export const TOKEN_ADDR = '0xa485738c04341bb81548c95f6ea9defc4218b776';
 export const GAS_EST = {
-  buyTokens: 200000
+  buyTokens: 500000
 };

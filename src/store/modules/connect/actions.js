@@ -5,7 +5,7 @@
  * The actions that are available on the
  * connect module
 //  */
-import web3 from '../../../helpers/web3';
+import { web3 } from '../../../helpers/web3';
 // import Web3 from 'web3';
 import sigUtil from 'eth-sig-util';
 import { SET_CONNECT_STATE } from './mutation-types';

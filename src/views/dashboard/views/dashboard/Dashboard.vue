@@ -99,7 +99,7 @@ const FAKE_BALANCE_DATA = [
   },
   {
     name: 'Moco',
-    icon: '<i class="fab fa-btc"></i>',
+    icon: '<i class="fas fa-coins"></i>',
     balance: 23333,
     currency: 'MOCO'
   }

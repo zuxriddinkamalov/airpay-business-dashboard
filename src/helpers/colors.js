@@ -1,6 +1,6 @@
 import { remove, append } from 'ramda';
-
-export const BASE_COLOR = '#377dfe';
+import { MAIN_COLOR } from '../constant/general';
+export const BASE_COLOR = MAIN_COLOR;
 
 function trim(str) {
   return str.replace(/^\s+|\s+$/gm, '');
