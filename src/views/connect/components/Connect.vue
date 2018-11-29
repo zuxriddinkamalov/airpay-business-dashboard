@@ -97,7 +97,28 @@ export default {
           let self = this;
           this.loading = true;
           try {
-            await self.$store.dispatch('connect/sign');
+            await ethereum.enable();
+            self.$store
+              .dispatch('connect/sign')
+              .then(done => {
+                self.$router.push({
+                  name: ROOT
+                });
+                self.$store.commit(`connect/${SET_CONNECT_STATE}`, {
+                  key: 'sign',
+                  value: done
+                });
+              })
+              .catch(error => {
+                let message = prepareValidateErrors(error);
+                this.$message({
+                  dangerouslyUseHTMLString: true,
+                  type: 'error',
+                  message: error
+                });
+                return false;
+                console.log('ERROR', error);
+              });
           } catch (error) {
             let message = prepareValidateErrors(error);
             this.$message({
@@ -106,13 +127,6 @@ export default {
               message: error
             });
             return false;
-          } finally {
-            console.log(ROOT);
-            setTimeout(function() {
-              self.$router.push({
-                name: ROOT
-              });
-            }, 5000);
           }
         } else {
           let message = prepareValidateErrors(error);

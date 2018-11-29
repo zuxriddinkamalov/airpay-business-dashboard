@@ -12,6 +12,5 @@ export const generateBlockies = address => {
     // default: random. Set to -1 to disable it. These "spots" create structures
     // that look like eyes, mouths and noses.
   });
-  console.log(icon);
   return icon;
 };

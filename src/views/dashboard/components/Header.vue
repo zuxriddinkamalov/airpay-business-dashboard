@@ -13,9 +13,9 @@
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundColor: '#fff'
-                    }">{{logo}}</div>
+                    }"></div>
                     <div class="user-name bold">{{ user.name }}</div>
-                    <div class="owner uppercase bold">mainnet</div>
+                    <div class="owner uppercase bold">{{ user.network }}</div>
                 </div>
                 <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
                 <el-button class="settings-button" type="text" @click.native="logout"><i class="fas fa-sign-out-alt"></i></el-button>
@@ -26,13 +26,20 @@
 <script>
 import { USER_SETTINGS } from '../../../constant/routes';
 import { generateBlockies } from '../../../helpers/blockies';
+import { addr, getNetwork } from '../../../helpers/web3';
 export default {
   name: 'Header',
   data: function() {
+    const select = addr();
+    const icon = generateBlockies();
+    console.log(icon);
+    const network = getNetwork();
+    console.log('aDD', select);
     return {
       user: {
-        logo: generateBlockies(),
-        name: 'Rob Johnson'
+        logo: icon,
+        name: select,
+        network: network
       }
     };
   },

@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { CROWDSALE_ADDR, TOKEN_ADDR } from '../constant/ethereum';
+import { CROWDSALE_ADDR, TOKEN_ADDR, NETWORKS } from '../constant/ethereum';
 import CROWD from './contracts/crowdsale.json';
 import TKN from './contracts/token.json';
 let _web3;
@@ -33,7 +33,13 @@ const FAKE_BALANCE_DATA = [
     currency: 'MOCO'
   }
 ];
-export const addr = _web3.givenProvider.selectedAddress;
+export const addr = () => {
+  return _web3.givenProvider.selectedAddress;
+};
+export const getNetwork = () => {
+  console.log(_web3.givenProvider);
+  return NETWORKS[_web3.givenProvider.networkVersion];
+};
 
 export const getEthBalance = address => {
   const addr = _web3.givenProvider.selectedAddress;
