@@ -74,74 +74,72 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text';
-import { prepareValidateErrors } from '../../../helpers/errors';
-import { SET_CONNECT_STATE } from '../../../store/modules/connect/mutation-types';
-import { ROOT } from '../../../constant/routes';
+import TextMixin from '@/mixins/text'
+import { prepareValidateErrors } from '../../../helpers/errors'
+import { SET_CONNECT_STATE } from '../../../store/modules/connect/mutation-types'
+import { ROOT } from '../../../constant/routes'
 
 export default {
   name: 'ConnectForm',
-  data: function() {
+  data: function () {
     return {
       loading: false,
       form: {
         method: 'metamask'
       },
       helpDialog: false
-    };
+    }
   },
   methods: {
-    async connectSubmit(formName) {
+    async connectSubmit (formName) {
       this.$refs[formName].validate(async (valid, error) => {
         if (valid) {
-          let self = this;
-          this.loading = true;
+          let self = this
+          this.loading = true
           try {
-            await ethereum.enable();
+            await ethereum.enable()
             self.$store
               .dispatch('connect/sign')
               .then(done => {
                 self.$router.push({
                   name: ROOT
-                });
+                })
                 self.$store.commit(`connect/${SET_CONNECT_STATE}`, {
                   key: 'sign',
                   value: done
-                });
+                })
               })
               .catch(error => {
-                let message = prepareValidateErrors(error);
                 this.$message({
                   dangerouslyUseHTMLString: true,
                   type: 'error',
                   message: error
-                });
-                return false;
-                console.log('ERROR', error);
-              });
+                })
+                return false
+                console.log('ERROR', error)
+              })
           } catch (error) {
-            let message = prepareValidateErrors(error);
             this.$message({
               dangerouslyUseHTMLString: true,
               type: 'error',
               message: error
-            });
-            return false;
+            })
+            return false
           }
         } else {
-          let message = prepareValidateErrors(error);
+          let message = prepareValidateErrors(error)
           this.$message({
             dangerouslyUseHTMLString: true,
             type: 'error',
             message: message
-          });
-          return false;
+          })
+          return false
         }
-      });
+      })
     }
   },
   mixins: [TextMixin]
-};
+}
 </script>
 
 <style lang="sass">

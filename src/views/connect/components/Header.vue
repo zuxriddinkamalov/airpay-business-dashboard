@@ -8,20 +8,19 @@
           backgroundColor: '#fff'
       }"></div>
 
-        </div>
     </div>
 </template>
 
 <script>
-import { LOGO } from '../../../constant/general';
+import { LOGO } from '../../../constant/general'
 export default {
   name: 'Header',
-  data: function() {
+  data: function () {
     return {
       logo: LOGO
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>

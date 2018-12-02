@@ -1,5 +1,5 @@
 <template>
-    <el-dropdown class="sidebar-header" trigger="click">
+    <div class="sidebar-header">
       <div class="el-dropdown-link">
         <div class="logo" :style="{
             backgroundImage: `url(${logo})`,
@@ -8,40 +8,40 @@
             backgroundPosition: 'center',
             backgroundColor: '#fff'
         }"></div>
-          <div class="title bold">
-              <span>{{name}}</span>
-          </div>
+        <div class="title bold">
+          <span>{{name}}</span>
+        </div>
       </div>
 
-    </el-dropdown>
+    </div>
 </template>
 
 <script>
-import { propEq, find, equals } from 'ramda';
-import { mapState } from 'vuex';
-import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-types';
-import { LOGO, NAME } from '../../../constant/general';
+import { propEq, find, equals } from 'ramda'
+import { mapState } from 'vuex'
+import { SET_DASHBOARD_STATE } from '../../../store/modules/dashboard/mutation-types'
+import { LOGO, NAME } from '../../../constant/general'
 export default {
   name: 'SidebarHeader',
   methods: {
-    changeOrganization: function(businessId) {
-      let activeBusiness = find(propEq('id', businessId))(this.organizations);
+    changeOrganization: function (businessId) {
+      let activeBusiness = find(propEq('id', businessId))(this.organizations)
       if (!equals(activeBusiness, this.activeBusiness)) {
         this.$store.commit(`dashboard/${SET_DASHBOARD_STATE}`, {
           key: 'activeBusiness',
           value: activeBusiness
-        });
+        })
       }
     },
-    createBusiness: function() {
-      console.warn('Create business');
+    createBusiness: function () {
+      console.warn('Create business')
     }
   },
-  data: function() {
+  data: function () {
     return {
       logo: LOGO,
       name: NAME
-    };
+    }
   },
   computed: {
     ...mapState({
@@ -49,21 +49,10 @@ export default {
       activeBusiness: state => state.dashboard.activeBusiness
     })
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>
-    .businesses-item
-        display: flex
-        justify-items: center
-        align-items: center
-        .logo
-            width: 20px
-            height: 20px
-            overflow: hidden
-            -webkit-border-radius: 50%
-            -moz-border-radius: 50%
-            border-radius: 50%
     .sidebar-header
         margin-bottom: 20px
         .el-dropdown-link

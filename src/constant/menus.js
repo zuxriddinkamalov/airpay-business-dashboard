@@ -1,4 +1,4 @@
-import * as ROUTES from './routes';
+import * as ROUTES from './routes'
 
 export default [
   {
@@ -89,4 +89,4 @@ export default [
     title: 'Terms and conditions',
     icon: '<i class="fas fa-clipboard-check"></i>'
   }
-];
+]

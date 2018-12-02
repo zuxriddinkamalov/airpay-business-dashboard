@@ -5,14 +5,14 @@
  * The routes and redirects are defined in this file.
  */
 
-import { CONNECT, CONNECT_URL } from '../constant/routes';
-import dashboard from './dashboard';
-import crowdsale from './crowdsale';
-import deposit from './deposit';
-import send from './send';
-import verification from './verification';
-import help from './help';
-import terms from './terms';
+import { CONNECT, CONNECT_URL } from '../constant/routes'
+import dashboard from './dashboard'
+import crowdsale from './crowdsale'
+import deposit from './deposit'
+import send from './send'
+import verification from './verification'
+import help from './help'
+import terms from './terms'
 
 export default [
   {
@@ -40,4 +40,4 @@ export default [
     path: '/*',
     redirect: '/'
   }
-];
+]

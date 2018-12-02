@@ -2,7 +2,7 @@
   <VBody title="Last transactions">
       <div slot="content">
           <div class="transactions-list">
-              <div v-for="transaction in fakeTransactionsData" :key="transaction.id" class="transaction-row">
+              <div v-for="transaction in data" :key="transaction.id" class="transaction-row">
                   <div class="transactions-list-row">
                       <div class="row-title">Tx Hash</div>
                       <div class="row-value tx-hash">{{ transaction.txHash | slice(20)}}<i class="fas fa-external-link-alt"></i></div>
@@ -39,36 +39,35 @@
   </VBody>
 </template>
 
-
 <script>
-import TextMixin from '@/mixins/text';
-import TimeMixin from '@/mixins/time';
-import VBody from '../../../components/Body';
-import { getLastTransactions } from '@/helpers/web3';
+import TextMixin from '@/mixins/text'
+import TimeMixin from '@/mixins/time'
+import VBody from '../../../components/Body'
+import { getLastTransactions } from '@/helpers/web3'
 
 export default {
   name: 'LastTransactions',
-  data: function() {
+  data: function () {
     return {
       loading: false,
       data: []
-    };
+    }
   },
   mixins: [TextMixin, TimeMixin],
-  created() {
-    this.getLastTransactionsData();
+  created () {
+    this.getLastTransactionsData()
   },
   methods: {
-    getLastTransactionsData() {
+    getLastTransactionsData () {
       getLastTransactions()
         .then(transactions => {
-          this.data = transactions;
+          this.data = transactions
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
     }
   },
   components: {
     VBody
   }
-};
+}
 </script>

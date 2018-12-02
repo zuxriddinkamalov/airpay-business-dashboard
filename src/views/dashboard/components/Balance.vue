@@ -34,63 +34,65 @@ import {
   getEthBalance,
   getTokenBalance,
   getBTCBalance
-} from '../../../helpers/web3';
+} from '../../../helpers/web3'
+import TextMixin from '@/mixins/text'
 
 export default {
   name: 'VBalance',
-  data: function() {
+  data: function () {
     return {
       loading: false,
       data: []
-    };
+    }
   },
-  created() {
-    this.getBalanceEthData();
-    this.getBalanceTokenData();
-    this.getBalanceBTCData();
+  created () {
+    this.getBalanceEthData()
+    this.getBalanceTokenData()
+    this.getBalanceBTCData()
   },
   methods: {
-    getBalanceEthData() {
-      this.loading = true;
+    getBalanceEthData () {
+      this.loading = true
       getEthBalance()
         .then(balance => {
-          const asset = this.data;
-          asset[0] = balance;
-          this.data = [...asset];
-          this.loading = false;
+          const asset = this.data
+          asset[0] = balance
+          this.data = [...asset]
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        }).finally(() => {
+          this.loading = false
+        })
     },
-    getBalanceTokenData() {
-      this.loading = true;
+    getBalanceTokenData () {
+      this.loading = true
 
       getTokenBalance()
         .then(balance => {
-          const asset = this.data;
-          asset[2] = balance;
-          this.data = [...asset];
-          this.loading = false;
+          const asset = this.data
+          asset[2] = balance
+          this.data = [...asset]
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        }).finally(() => this.loading = false)
     },
-    getBalanceBTCData() {
-      this.loading = true;
+    getBalanceBTCData () {
+      this.loading = true
 
       getBTCBalance()
         .then(balance => {
-          const asset = this.data;
-          asset[1] = balance;
-          this.data = [...asset];
-          this.loading = false;
+          const asset = this.data
+          asset[1] = balance
+          this.data = [...asset]
+          this.loading = false
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
-  }
-};
+  },
+  mixins: [TextMixin]
+}
 </script>

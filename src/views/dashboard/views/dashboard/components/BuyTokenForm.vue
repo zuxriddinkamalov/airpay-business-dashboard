@@ -60,10 +60,10 @@
 </template>
 
 <script>
-import { map } from 'ramda';
-import VBody from '../../../components/Body';
-import { prepareValidateErrors } from '../../../../../helpers/errors';
-import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types';
+import { map } from 'ramda'
+import VBody from '../../../components/Body'
+import { prepareValidateErrors } from '../../../../../helpers/errors'
+import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types'
 
 const SLIDER = [
   {
@@ -90,61 +90,61 @@ const SLIDER = [
     sum: 4.9,
     currency: 'BTC'
   }
-];
+]
 
 export default {
   name: 'BuyTokenForm',
-  data: function() {
+  data: function () {
     return {
       form: {
         amount: '1',
         currency: 'eth'
       }
-    };
+    }
   },
   methods: {
-    submit: function(formName) {
+    submit: function (formName) {
       if (this.loading) {
-        return;
+        return
       }
       this.$refs[formName].validate((valid, error) => {
         if (valid) {
           this.$store.dispatch('dashboard/home/buyTokens', {
             amount: 1
-          });
+          })
         } else {
-          let message = prepareValidateErrors(error);
+          let message = prepareValidateErrors(error)
           this.$message({
             dangerouslyUseHTMLString: true,
             type: 'error',
             message: message
-          });
-          return false;
+          })
+          return false
         }
-      });
+      })
     }
   },
   computed: {
-    sliderText: function() {
+    sliderText: function () {
       return map(
         item =>
           `<img class="flag" src="${item.flag}" alt="" />
         User from <span class="bold">${
-          item.country
-        }</span> pledge <span class="bold">${item.sum} ${item.currency}</span>`,
+  item.country
+}</span> pledge <span class="bold">${item.sum} ${item.currency}</span>`,
         SLIDER
-      );
+      )
     },
-    rulesBuyToken: function() {
+    rulesBuyToken: function () {
       let checkZero = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('Amount is required'));
+          callback(new Error('Amount is required'))
         } else if (value < 1) {
-          callback(new Error(`Amount can not be less then ${1}`));
+          callback(new Error(`Amount can not be less then ${1}`))
         } else {
-          callback();
+          callback()
         }
-      };
+      }
       return {
         amount: [
           {
@@ -152,13 +152,13 @@ export default {
             trigger: ['submit', 'blur']
           }
         ]
-      };
+      }
     }
   },
   components: {
     VBody
   }
-};
+}
 </script>
 
 <style lang="sass">

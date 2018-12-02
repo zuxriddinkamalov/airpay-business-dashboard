@@ -36,34 +36,34 @@
 </template>
 
 <script>
-import VBody from '../../../components/Body';
-import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types';
+import VBody from '../../../components/Body'
+import { SET_HOME_DATA } from '../../../../../store/modules/dashboard/home/mutation-types'
 
 export default {
   name: 'BuyTokenStatus',
-  data: function() {
+  data: function () {
     return {
       status: 'PENDING'
-    };
+    }
   },
-  mounted() {
-    let self = this;
+  mounted () {
+    let self = this
     setTimeout(() => {
-      self.status = 'SUCCESS';
-    }, 3000);
+      self.status = 'SUCCESS'
+    }, 3000)
   },
   methods: {
-    gotoMain() {
+    gotoMain () {
       this.$store.commit(`dashboard/home/${SET_HOME_DATA}`, {
         key: 'buyTokenTab',
         value: 'VBuyTokenForm'
-      });
+      })
     }
   },
   components: {
     VBody
   }
-};
+}
 </script>
 
 <style lang="sass">

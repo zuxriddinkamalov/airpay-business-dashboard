@@ -31,20 +31,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import MENU from '@/constant/menus';
+import { mapState } from 'vuex'
+import MENU from '@/constant/menus'
 
 export default {
   name: 'Menu',
-  data: function() {
+  data: function () {
     return {
       menu: MENU
-    };
+    }
   },
   computed: {
     ...mapState(['route'])
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>

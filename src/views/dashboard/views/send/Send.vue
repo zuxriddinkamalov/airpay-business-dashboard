@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import VBody from '../../components/Body';
-import TextMixin from '@/mixins/text';
-import TimeMixin from '@/mixins/time';
-import VBalance from '../../components/Balance';
+import VBody from '../../components/Body'
+import TextMixin from '@/mixins/text'
+import TimeMixin from '@/mixins/time'
+import VBalance from '../../components/Balance'
 
 const FAKE_CURRENCIES_DATA = [
   {
@@ -70,23 +70,23 @@ const FAKE_CURRENCIES_DATA = [
     icon: '<i class="fab fa-btc"></i>',
     symbol: 'MOCO'
   }
-];
+]
 
 export default {
   name: 'Send',
-  data: function() {
+  data: function () {
     return {
       fakeCurrencies: FAKE_CURRENCIES_DATA,
       selectedCurrency: 1,
       address: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2'
-    };
+    }
   },
   methods: {
-    copySuccess: function() {
+    copySuccess: function () {
       this.$message({
         message: 'Successfully copied',
         type: 'success'
-      });
+      })
     }
   },
   components: {
@@ -94,7 +94,7 @@ export default {
     VBalance
   },
   mixins: [TextMixin, TimeMixin]
-};
+}
 </script>
 
 <style lang="sass">

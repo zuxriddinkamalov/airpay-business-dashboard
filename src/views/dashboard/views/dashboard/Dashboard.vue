@@ -18,19 +18,19 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text';
-import TimeMixin from '@/mixins/time';
-import VBody from '../../components/Body';
-import VBuyTokens from './components/BuyTokens';
-import VUnlockTokens from './components/UnlockTokens';
-import VBalance from '../../components/Balance';
-import VTransactions from './components/LastTransactions';
+import TextMixin from '@/mixins/text'
+import TimeMixin from '@/mixins/time'
+import VBody from '../../components/Body'
+import VBuyTokens from './components/BuyTokens'
+import VUnlockTokens from './components/UnlockTokens'
+import VBalance from '../../components/Balance'
+import VTransactions from './components/LastTransactions'
 export default {
   name: 'Dashboard',
-  data: function() {
+  data: function () {
     return {
       fakeTransactionsData: FAKE_TRANSACTIONS_DATA
-    };
+    }
   },
   mixins: [TextMixin, TimeMixin],
   components: {
@@ -40,7 +40,7 @@ export default {
     VBalance,
     VTransactions
   }
-};
+}
 </script>
 
 <style lang="sass">

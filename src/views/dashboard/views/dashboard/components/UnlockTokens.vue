@@ -39,41 +39,41 @@
 </template>
 
 <script>
-import TimeMixin from '@/mixins/time';
-import TextMixin from '@/mixins/text';
-import VBody from '../../../components/Body';
-import { web3, getLockedTokenBalance } from '@/helpers/web3';
+import TimeMixin from '@/mixins/time'
+import TextMixin from '@/mixins/text'
+import VBody from '../../../components/Body'
+import { web3, getLockedTokenBalance } from '@/helpers/web3'
 
 export default {
   name: 'UnlockTokens',
-  data: function() {
+  data: function () {
     return {
       lockedAmount: 0,
       form: {}
-    };
+    }
   },
-  created() {
-    this.getLockedTokenBalanceData();
+  created () {
+    this.getLockedTokenBalanceData()
   },
   methods: {
-    getLockedTokenBalanceData() {
-      this.loading = true;
+    getLockedTokenBalanceData () {
+      this.loading = true
 
       getLockedTokenBalance()
         .then(balance => {
-          this.lockedAmount = balance;
-          this.loading = false;
+          this.lockedAmount = balance
+          this.loading = false
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
   },
   components: {
     VBody
   },
   mixins: [TimeMixin, TextMixin]
-};
+}
 </script>
 
 <style lang="sass" scoped>

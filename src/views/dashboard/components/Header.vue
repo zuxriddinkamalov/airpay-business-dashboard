@@ -6,15 +6,9 @@
             </el-button>
         </el-col>
         <el-col class="logo-container">
-
                 <div class="el-dropdown-link">
-                    <div class="logo" :style="{
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundColor: '#fff'
-                    }"></div>
-                    <div class="user-name bold">{{ user.name }}</div>
+                    <div ref="logo" class="logo"></div>
+                    <div class="user-name bold">{{ user.name | slice(7) }}</div>
                     <div class="owner uppercase bold">{{ user.network }}</div>
                 </div>
                 <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
@@ -24,37 +18,42 @@
 </template>
 
 <script>
-import { USER_SETTINGS } from '../../../constant/routes';
-import { generateBlockies } from '../../../helpers/blockies';
-import { addr, getNetwork } from '../../../helpers/web3';
+import TextMixin from '@/mixins/text'
+import { USER_SETTINGS } from '../../../constant/routes'
+import { generateBlockies } from '../../../helpers/blockies'
+import { addr, getNetwork } from '../../../helpers/web3'
 export default {
   name: 'Header',
-  data: function() {
-    const select = addr();
-    const icon = generateBlockies();
-    console.log(icon);
-    const network = getNetwork();
-    console.log('aDD', select);
+  data: function () {
+    const select = addr()
+    const icon = generateBlockies()
+    console.log(icon)
+    const network = getNetwork()
+    console.log('aDD', select)
     return {
       user: {
         logo: icon,
         name: select,
         network: network
       }
-    };
+    }
+  },
+  mounted () {
+    this.$refs.logo.appendChild(this.user.logo)
   },
   methods: {
-    openSettings: function() {
+    openSettings: function () {
       this.$router.push({
         name: USER_SETTINGS
-      });
+      })
     },
-    logout: function() {
-      sessionStorage.removeItem('token');
-      location.reload(true);
+    logout: function () {
+      sessionStorage.removeItem('token')
+      location.reload(true)
     }
-  }
-};
+  },
+  mixins: [TextMixin]
+}
 </script>
 
 <style lang="sass">
@@ -94,8 +93,9 @@ export default {
     position: relative
 
 .logo
-    width: 50px
-    height: 50px
+    width: 45px
+    overflow: hidden
+    height: 45px
     display: inline-block
     -webkit-border-radius: 50%
     -moz-border-radius: 50%
