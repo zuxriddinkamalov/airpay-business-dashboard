@@ -1,6 +1,3 @@
-export const LOGO =
-  'https://s3.us-east-2.amazonaws.com/airpay-network/DIP_logo.png'
-export const FAV = 'https://s3.us-east-2.amazonaws.com/airpay-network/fav.png'
-// export const MAIN_COLOR = '#377dfe';
-export const MAIN_COLOR = '#FFC408'
-export const NAME = 'DIP'
+export const LOGO = process.env.VUE_APP_LOGO;
+export const MAIN_COLOR = process.env.MAIN_COLOR;
+export const NAME = process.env.NAME;
