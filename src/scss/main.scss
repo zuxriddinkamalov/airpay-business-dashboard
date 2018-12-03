@@ -430,3 +430,13 @@ input[type='number']::-webkit-outer-spin-button {
     line-height: 1.4;
   }
 }
+
+.flex-row {
+  flex-wrap: wrap;
+  //&>div {
+  //  margin-bottom: 15px;
+  //}
+  //&>div:last-child {
+  //  margin-bottom: 0
+  //}
+}

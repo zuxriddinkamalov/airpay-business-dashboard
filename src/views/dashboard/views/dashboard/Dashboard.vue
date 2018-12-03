@@ -2,7 +2,7 @@
     <div>
         <VBalance />
         <div class="tokens-actions">
-            <el-row type="flex" :gutter="15">
+            <el-row class="flex-row" type="flex" :gutter="15" wrap>
                 <el-col :xs="24" :sm="12">
                     <VBuyTokens />
                 </el-col>
@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text'
-import TimeMixin from '@/mixins/time'
 import VBody from '../../components/Body'
 import VBuyTokens from './components/BuyTokens'
 import VUnlockTokens from './components/UnlockTokens'
@@ -27,12 +25,6 @@ import VBalance from '../../components/Balance'
 import VTransactions from './components/LastTransactions'
 export default {
   name: 'Dashboard',
-  data: function () {
-    return {
-      fakeTransactionsData: FAKE_TRANSACTIONS_DATA
-    }
-  },
-  mixins: [TextMixin, TimeMixin],
   components: {
     VBody,
     VBuyTokens,
