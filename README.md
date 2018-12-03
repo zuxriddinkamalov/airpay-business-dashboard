@@ -1,4 +1,4 @@
-# airpay-crowdsale-widget
+# DIP
 
 ## Project setup
 ```
