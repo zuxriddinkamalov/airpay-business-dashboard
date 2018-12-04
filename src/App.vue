@@ -13,9 +13,7 @@ import { BASE_COLOR, hexToRGBA, rgbToCSSVar } from './helpers/colors';
 export default {
   name: 'App',
   mounted() {
-    let baseColor = process.env.VUE_APP_MAIN_COLOR
-      ? process.env.VUE_APP_MAIN_COLOR
-      : '#FFC408';
+    let baseColor = VUE_APP_MAIN_COLOR;
     let cssRGB = rgbToCSSVar(hexToRGBA(baseColor, 1));
     document.documentElement.style.setProperty(
       '--primary-color',

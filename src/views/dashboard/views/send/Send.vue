@@ -4,7 +4,7 @@
         <div class="deposit-block">
             <el-container>
                 <el-aside width="250px">
-                    <VBody title="1. Select currency" contentBg="#F7F7F7" headerBg="#F7F7F7">
+                    <VBody title="1. Select currency" contentBg="#FFFFFF" headerBg="#FFFFFF">
                         <div slot="content" class="currency-select">
                             <el-radio-group v-model="selectedCurrency">
                                 <el-radio-button :key="currency.id" v-for="currency in fakeCurrencies" :label="currency.id">
@@ -46,15 +46,15 @@
 </template>
 
 <script>
-import VBody from '../../components/Body'
-import TextMixin from '@/mixins/text'
-import TimeMixin from '@/mixins/time'
-import VBalance from '../../components/Balance'
+import VBody from '../../components/Body';
+import TextMixin from '@/mixins/text';
+import TimeMixin from '@/mixins/time';
+import VBalance from '../../components/Balance';
 
 const FAKE_CURRENCIES_DATA = [
   {
     id: 1,
-    name: 'Ehhereum',
+    name: 'Ethereum',
     icon: '<i class="fab fa-ethereum"></i>',
     symbol: 'ETH'
   },
@@ -67,26 +67,26 @@ const FAKE_CURRENCIES_DATA = [
   {
     id: 3,
     name: 'Moco',
-    icon: '<i class="fab fa-btc"></i>',
+    icon: '<i class="fas fa-coins"></i>',
     symbol: 'MOCO'
   }
-]
+];
 
 export default {
   name: 'Send',
-  data: function () {
+  data: function() {
     return {
       fakeCurrencies: FAKE_CURRENCIES_DATA,
       selectedCurrency: 1,
       address: '0x0689E898Bb48A1695F79171279B7E00F5dB14DD2'
-    }
+    };
   },
   methods: {
-    copySuccess: function () {
+    copySuccess: function() {
       this.$message({
         message: 'Successfully copied',
         type: 'success'
-      })
+      });
     }
   },
   components: {
@@ -94,7 +94,7 @@ export default {
     VBalance
   },
   mixins: [TextMixin, TimeMixin]
-}
+};
 </script>
 
 <style lang="sass">
