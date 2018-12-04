@@ -1,6 +1,5 @@
 import { remove, append } from 'ramda'
-import { MAIN_COLOR } from '../constant/general'
-export const BASE_COLOR = MAIN_COLOR
+export const BASE_COLOR = process.env.VUE_APP_BASE_COLOR
 
 function trim (str) {
   return str.replace(/^\s+|\s+$/gm, '')

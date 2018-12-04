@@ -4,7 +4,7 @@
           <VSidebarHeader />
           <VMenu />
       </el-aside>
-      <el-container>
+      <el-container class="dashboard-content">
           <el-header height="auto">
               <VHeader />
           </el-header>
@@ -36,5 +36,8 @@ export default {
 
 <style lang="sass" scoped>
   .side-bar
+    position: fixed
     padding: 30px
+  .dashboard-content
+      margin-left: 260px
 </style>

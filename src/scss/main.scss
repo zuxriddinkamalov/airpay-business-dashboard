@@ -255,6 +255,10 @@ input[type='number']::-webkit-outer-spin-button {
   }
   .balance-list {
     display: flex;
+    .accounts {
+      display: flex;
+      flex-wrap: wrap;
+    }
     .account {
       margin-right: 10px;
       -webkit-border-radius: 5px;

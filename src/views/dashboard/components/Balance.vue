@@ -3,22 +3,24 @@
     <div class="balance">
         <div class="title bold">Balances</div>
         <div v-if="loading">Loading...</div>
-        <el-row type="flex" class="balance-content" v-if="!loading">
-            <el-col :xs="24" class="balance-list">
-                <div :key="account.abbreviation" v-for="account in data" class="account">
-                    <div class="account-header">
-                        <div class="account-header-title">
-                            {{ account.name }}
+        <el-row type="flex" class="flex-row balance-content" v-if="!loading">
+            <el-col :xs="24" :sm="19" class="balance-list">
+                <div class="accounts">
+                    <div :key="account.abbreviation" v-for="account in data" class="account">
+                        <div class="account-header">
+                            <div class="account-header-title">
+                                {{ account.name }}
+                            </div>
+                            <div class="account-header-icon" v-html="account.icon"></div>
                         </div>
-                        <div class="account-header-icon" v-html="account.icon"></div>
-                    </div>
-                    <div class="balance-value">
-                        <span class="value">{{ account.balance | money }}</span>
-                        <span class="currency uppercase">{{ account.currency }}</span>
+                        <div class="balance-value">
+                            <span class="value">{{ account.balance | money }}</span>
+                            <span class="currency uppercase">{{ account.currency }}</span>
+                        </div>
                     </div>
                 </div>
             </el-col>
-            <el-col class="balance-button" :xs="24" :md="5">
+            <el-col class="balance-button" :xs="24" :sm="5">
                    <el-button class="make-deposit">
                        <span class="bold">Make deposit</span>
                    </el-button>
