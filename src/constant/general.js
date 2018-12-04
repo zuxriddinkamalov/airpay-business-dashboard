@@ -4,6 +4,4 @@ export const LOGO = process.env.VUE_APP_LOGO
 export const MAIN_COLOR = process.env.VUE_APP_MAIN_COLOR
   ? process.env.VUE_APP_MAIN_COLOR
   : '#FFC408';
-export const NAME = process.env.VUE_APP_NAME
-  ? process.env.VUE_APP_NAME
-  : 'NAME';
+export const NAME = process.env.VUE_APP_NAME ? process.env.VUE_APP_NAME : 'DIP';

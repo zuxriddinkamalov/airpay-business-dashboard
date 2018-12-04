@@ -18,42 +18,40 @@
 </template>
 
 <script>
-import TextMixin from '@/mixins/text'
-import { USER_SETTINGS } from '../../../constant/routes'
-import { generateBlockies } from '../../../helpers/blockies'
-import { addr, getNetwork } from '../../../helpers/web3'
+import TextMixin from '@/mixins/text';
+import { USER_SETTINGS } from '../../../constant/routes';
+import { generateBlockies } from '../../../helpers/blockies';
+import { addr, getNetwork } from '../../../helpers/web3';
 export default {
   name: 'Header',
-  data: function () {
-    const select = addr()
-    const icon = generateBlockies()
-    console.log(icon)
-    const network = getNetwork()
-    console.log('aDD', select)
+  data: function() {
+    const select = addr();
+    const icon = generateBlockies(select);
+    const network = getNetwork();
     return {
       user: {
         logo: icon,
         name: select,
         network: network
       }
-    }
+    };
   },
-  mounted () {
-    this.$refs.logo.appendChild(this.user.logo)
+  mounted() {
+    this.$refs.logo.appendChild(this.user.logo);
   },
   methods: {
-    openSettings: function () {
+    openSettings: function() {
       this.$router.push({
         name: USER_SETTINGS
-      })
+      });
     },
-    logout: function () {
-      sessionStorage.removeItem('token')
-      location.reload(true)
+    logout: function() {
+      sessionStorage.removeItem('token');
+      location.reload(true);
     }
   },
   mixins: [TextMixin]
-}
+};
 </script>
 
 <style lang="sass">

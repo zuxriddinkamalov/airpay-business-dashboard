@@ -20,9 +20,11 @@ const webpack = require('webpack');
 module.exports = {
   chainWebpack: config => {
     config.plugin('define').tap(args => {
-      console.log(args);
       args[0].VUE_APP_NAME = JSON.stringify(name);
       args[0].VUE_APP_FAV = JSON.stringify(fav);
+      args[0].VUE_APP_MAIN_COLOR = JSON.stringify(mainColor);
+      args[0].VUE_APP_BASE_COLOR = JSON.stringify(baseColor);
+      args[0].VUE_APP_BG_COLOR = JSON.stringify(bgColor);
       return args;
     });
   },
