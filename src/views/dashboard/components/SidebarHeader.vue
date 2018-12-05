@@ -8,11 +8,7 @@
             backgroundPosition: 'center',
             backgroundColor: '#fff'
         }"></div>
-        <div class="title bold">
-          <span>{{name}}</span>
-        </div>
       </div>
-
     </div>
 </template>
 
@@ -32,9 +28,6 @@ export default {
           value: activeBusiness
         })
       }
-    },
-    createBusiness: function () {
-      console.warn('Create business')
     }
   },
   data: function () {
@@ -54,6 +47,7 @@ export default {
 
 <style lang="sass" scoped>
     .sidebar-header
+        display: flex
         margin-bottom: 20px
         .el-dropdown-link
             display: flex

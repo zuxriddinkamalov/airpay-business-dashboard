@@ -163,7 +163,7 @@ export default {
 
 <style lang="sass">
     a
-        color: var(--primary-color)
+        color: $--color-primary
     .form-info
         font-size: 16px
         line-height: 1.3

@@ -1,20 +1,19 @@
-import { remove, append } from 'ramda'
-export const BASE_COLOR = process.env.VUE_APP_BASE_COLOR
+const R = require('ramda')
 
 function trim (str) {
   return str.replace(/^\s+|\s+$/gm, '')
 }
 
-export const getRGB = (rgba, opacity) => {
+const getRGB = (rgba, opacity) => {
   let color = rgba
     .replace(/^(rgb|rgba)\(/, '')
     .replace(/\)$/, '')
     .replace(/\s/g, '')
     .split(',')
-  return 'rgba(' + append(opacity, remove(3, 1, color)).join() + ')'
+  return 'rgba(' + R.append(opacity, R.remove(3, 1, color)).join() + ')'
 }
 
-export const hexToRGBA = (hex, opacity) => {
+const hexToRGBA = (hex, opacity) => {
   let color
   if (/^#/.test(hex)) {
     hex = hex.replace(/^#/, '')
@@ -33,16 +32,16 @@ export const hexToRGBA = (hex, opacity) => {
   }
 }
 
-export const rgbToCSSVar = rgba => {
+const rgbToCSSVar = rgba => {
   let color = rgba
     .replace(/^(rgb|rgba)\(/, '')
     .replace(/\)$/, '')
     .replace(/\s/g, '')
     .split(',')
-  return remove(3, 1, color).join()
+  return R.remove(3, 1, color).join()
 }
 
-export const rgbaToHex = rgba => {
+const rgbaToHex = rgba => {
   let parts = rgba.substring(rgba.indexOf('(')).split(',')
   let r = parseInt(trim(parts[0].substring(1)), 10)
   let g = parseInt(trim(parts[1]), 10)
@@ -58,4 +57,11 @@ export const rgbaToHex = rgba => {
     b.toString(16) +
     (a * 255).toString(16).substring(0, 2)
   )
+}
+
+module.exports = {
+  getRGB,
+  hexToRGBA,
+  rgbToCSSVar,
+  rgbaToHex
 }

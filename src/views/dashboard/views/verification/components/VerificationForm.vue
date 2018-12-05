@@ -1,7 +1,7 @@
 <template>
-    <el-row type="flex">
+    <el-row class="flex-row" type="flex">
         <el-col :xs="24" :sm="12">
-            <VBody custom-style="identity" header-bg="var(--primary-color)" content-bg="var(--primary-color)" title="Identity verification">
+            <VBody custom-style="identity" header-bg="$--color-primary" content-bg="$--color-primary" title="Identity verification">
                 <div slot="content">
                     <el-form @submit.prevent.native :model="form" ref="identityForm">
                         <el-form-item class="document-type" prop="docType">
@@ -377,7 +377,7 @@ export default {
                 align-items: center
             width: 100%
             font-size: 13px
-            color: var(--primary-color)
+            color: $--color-primary
             background: #fff
             position: absolute
             left: 0

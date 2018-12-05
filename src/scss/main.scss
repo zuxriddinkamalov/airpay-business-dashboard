@@ -1,16 +1,8 @@
-// $--color-primary: #377dfe;
-// $--font-path: '~element-ui/lib/theme-chalk/fonts';
-// $BASE_COLOR: #565656;
-
-$--color-primary: #ffc408;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
-$BASE_COLOR: #565656;
-
 @import '~element-ui/packages/theme-chalk/src/index';
 
 body {
-  background: #f8f8f8;
-  // background: #ebeef4;
+  background: $bg-color;
 }
 
 *:not(i) {
@@ -103,9 +95,9 @@ input[type='number']::-webkit-outer-spin-button {
   font-family: SourceSansPro-Semibold, sans-serif;
   font-size: 17px;
   letter-spacing: 0.46px;
-  -webkit-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
-  -moz-box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
-  box-shadow: 0 5px 14px -2px rgba(var(--rgb-primary-color), 0.53);
+  -webkit-box-shadow: 0 5px 14px -2px rgba($--color-primary, 0.53);
+  -moz-box-shadow: 0 5px 14px -2px rgba($--color-primary, 0.53);
+  box-shadow: 0 5px 14px -2px rgba($--color-primary, 0.53);
 }
 
 .uppercase {
@@ -204,6 +196,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 .big-title {
+  line-height: 1.2;
   font-size: 24px;
   margin-bottom: 15px;
 }
@@ -211,7 +204,7 @@ input[type='number']::-webkit-outer-spin-button {
 .help-url {
   font-size: 17px;
   a {
-    color: var(--primary-color);
+    color: $--color-primary;
   }
 }
 
@@ -241,10 +234,10 @@ input[type='number']::-webkit-outer-spin-button {
 .balance {
   padding: 25px 20px;
   margin-bottom: 20px;
-  background: var(--primary-color);
-  -webkit-box-shadow: 0 0 12px -3px rgba(var(--rgb-primary-color), 0.75);
-  -moz-box-shadow: 0 0 12px -3px rgba(var(--rgb-primary-color), 0.75);
-  box-shadow: 0 0 12px -3px rgba(var(--rgb-primary-color), 0.75);
+  background: $--color-primary;
+  -webkit-box-shadow: 0 0 12px -3px rgba($--color-primary, 0.75);
+  -moz-box-shadow: 0 0 12px -3px rgba($--color-primary, 0.75);
+  box-shadow: 0 0 12px -3px rgba($--color-primary, 0.75);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -284,7 +277,7 @@ input[type='number']::-webkit-outer-spin-button {
           -webkit-border-radius: 50%;
           -moz-border-radius: 50%;
           border-radius: 50%;
-          background: var(--primary-color);
+          background: $--color-primary;
           & i {
             font-size: 20px;
             vertical-align: middle;
@@ -322,16 +315,18 @@ input[type='number']::-webkit-outer-spin-button {
 
 .transactions-list {
   .transaction-row {
-    padding-bottom: 10px;
+    flex-wrap: wrap;
+    padding: 10px 0;
     margin-bottom: 10px;
     border-bottom: 1px solid #f1f1f1;
     display: flex;
     justify-content: space-between;
     .transactions-list-row {
+      padding: 0 5px;
+      margin-bottom: 20px;
       .row-title {
         height: 17px;
         font-size: 13px;
-        padding-bottom: 5px;
       }
       .tx-hash {
         i {
@@ -437,10 +432,4 @@ input[type='number']::-webkit-outer-spin-button {
 
 .flex-row {
   flex-wrap: wrap;
-  //&>div {
-  //  margin-bottom: 15px;
-  //}
-  //&>div:last-child {
-  //  margin-bottom: 0
-  //}
 }

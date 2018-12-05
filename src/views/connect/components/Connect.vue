@@ -152,7 +152,7 @@ export default {
             .dialog-title
                 font-size: 18px
             .dialog-exit
-                color: var(--primary-color)
+                color: $--color-primary
                 cursor: pointer
                 padding-left: 15px
                 position: relative
@@ -165,7 +165,7 @@ export default {
                     left: 0
                     top: 1px
                 &:hover
-                    color: rgba(var(--rgb-primary-color), 0.8)
+                    color: rgba($--color-primary, 0.8)
         .help-block
             margin-bottom: 20px
             h4
@@ -182,7 +182,7 @@ export default {
                     margin-right: 15px
                     margin-bottom: 5px
                     a
-                        color: var(--primary-color)
+                        color: $--color-primary
                         padding-right: 25px
                         position: relative
                         &:after

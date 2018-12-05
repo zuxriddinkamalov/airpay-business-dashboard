@@ -6,7 +6,7 @@
         <el-row type="flex" class="flex-row balance-content" v-if="!loading">
             <el-col :xs="24" :sm="19" class="balance-list">
                 <div class="accounts">
-                    <div :key="account.abbreviation" v-for="account in data" class="account">
+                    <div :key="account.currency" v-for="account in data" class="account">
                         <div class="account-header">
                             <div class="account-header-title">
                                 {{ account.name }}
@@ -78,7 +78,9 @@ export default {
         })
         .catch(error => {
           console.log(error)
-        }).finally(() => this.loading = false)
+        }).finally(() => {
+          this.loading = false
+        })
     },
     getBalanceBTCData () {
       this.loading = true
@@ -88,6 +90,7 @@ export default {
           const asset = this.data
           asset[1] = balance
           this.data = [...asset]
+          console.warn(this.data)
           this.loading = false
         })
         .catch(error => {

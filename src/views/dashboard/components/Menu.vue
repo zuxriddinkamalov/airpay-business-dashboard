@@ -56,11 +56,11 @@ export default {
         font-weight: bold
         color: #565656
         &:hover
-            color: var(--primary-color)!important
+            color: $--color-primary!important
     .side-bar-menu-open > a
-        color: var(--primary-color)!important
+        color: $--color-primary!important
         .icon
-            color: var(--primary-color)!important
+            color: $--color-primary!important
     .menu-items
         line-height: 1.5
         margin-top: 30px

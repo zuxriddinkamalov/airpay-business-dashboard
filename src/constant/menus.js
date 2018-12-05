@@ -39,23 +39,23 @@ export default [
         title: 'Transactions'
       },
       {
-        name: ROUTES.INTERACTIONS,
-        to: ROUTES.INTERACTIONS_URL,
+        name: ROUTES.TOKENS,
+        to: ROUTES.TOKENS_URL,
         title: 'Tokens'
       },
       {
-        name: ROUTES.INTERACTIONS,
-        to: ROUTES.INTERACTIONS_URL,
+        name: ROUTES.RATES,
+        to: ROUTES.RATES_URL,
         title: 'Rates'
       },
       {
-        name: ROUTES.INTERACTIONS,
-        to: ROUTES.INTERACTIONS_URL,
+        name: ROUTES.WHITELIST,
+        to: ROUTES.WHITELIST_URL,
         title: 'Whitelist'
       },
       {
-        name: ROUTES.INTERACTIONS,
-        to: ROUTES.INTERACTIONS_URL,
+        name: ROUTES.OWNERSHIP,
+        to: ROUTES.OWNERSHIP_URL,
         title: 'Ownership'
       }
     ]

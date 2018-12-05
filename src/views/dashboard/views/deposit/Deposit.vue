@@ -107,7 +107,7 @@ export default {
         .el-radio-button
             width: 100%
             &.is-active .el-radio-button__inner
-                background-color: var(--primary-color)
+                background-color: $--color-primary
                 color: #fff
             .el-radio-button__inner
                 -webkit-border-radius: 0

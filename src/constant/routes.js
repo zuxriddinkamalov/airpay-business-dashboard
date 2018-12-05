@@ -31,6 +31,18 @@ export const TRANSACTIONS_URL = `/${CROWDSALE}/${TRANSACTIONS}`
 export const INTERACTIONS = 'interactions'
 export const INTERACTIONS_URL = `/${CROWDSALE}/${INTERACTIONS}`
 
+export const TOKENS = 'tokens'
+export const TOKENS_URL = `/${CROWDSALE}/${TOKENS}`
+
+export const RATES = 'rates'
+export const RATES_URL = `/${CROWDSALE}/${RATES}`
+
+export const WHITELIST = 'white-list'
+export const WHITELIST_URL = `/${CROWDSALE}/${RATES}`
+
+export const OWNERSHIP = 'ownership'
+export const OWNERSHIP_URL = `/${CROWDSALE}/${OWNERSHIP}`
+
 // HELP ROUTES
 export const HELP = 'help'
 export const HELP_URL = `/${HELP}`

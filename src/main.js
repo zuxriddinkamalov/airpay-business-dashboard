@@ -15,6 +15,15 @@ import './plugins/vue-web3'
 import { router } from './plugins/vue-router'
 
 /* ============
+ * Styles
+ * ============
+ *
+ * Import styles.
+ */
+
+import '@/scss/index.scss'
+
+/* ============
  * Main App
  * ============
  *

@@ -3,7 +3,7 @@
         <VBalance />
         <div class="deposit-block">
             <el-container>
-                <el-aside width="250px">
+                <el-aside class="currency-list" width="250px">
                     <VBody title="1. Select currency" contentBg="#F7F7F7" headerBg="#F7F7F7">
                         <div slot="content" class="currency-select">
                             <el-radio-group v-model="selectedCurrency">
@@ -113,7 +113,7 @@ export default {
         .el-radio-button
             width: 100%
             &.is-active .el-radio-button__inner
-                background-color: var(--primary-color)
+                background-color: $--color-primary
                 color: #fff
             .el-radio-button__inner
                 -webkit-border-radius: 0

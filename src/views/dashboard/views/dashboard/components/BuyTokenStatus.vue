@@ -73,7 +73,7 @@ export default {
             vertical-align: middle
             font-size: 28px
     a
-        color: var(--primary-color)
+        color: $--color-primary
     .form-info
         font-size: 16px
         line-height: 1.3
