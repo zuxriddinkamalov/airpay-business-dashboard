@@ -1,4 +1,4 @@
-import blockies from 'ethereum-blockies';
+import blockies from 'ethereum-blockies'
 
 export const generateBlockies = address => {
   var icon = blockies.create({
@@ -11,6 +11,6 @@ export const generateBlockies = address => {
     spotcolor: '#000' // each pixel has a 13% chance of being of a third color,
     // default: random. Set to -1 to disable it. These "spots" create structures
     // that look like eyes, mouths and noses.
-  });
-  return icon;
-};
+  })
+  return icon
+}

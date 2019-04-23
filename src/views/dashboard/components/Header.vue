@@ -6,52 +6,52 @@
             </el-button>
         </el-col>
         <el-col class="logo-container">
-                <div class="el-dropdown-link">
-                    <div ref="logo" class="logo"></div>
-                    <div class="user-name bold">{{ user.name | slice(7) }}</div>
-                    <div class="owner uppercase bold">{{ user.network }}</div>
-                </div>
-                <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
-                <el-button class="settings-button" type="text" @click.native="logout"><i class="fas fa-sign-out-alt"></i></el-button>
+            <div class="el-dropdown-link">
+                <div ref="logo" class="logo"></div>
+                <div class="user-name bold">{{ user.name | slice(7) }}</div>
+                <div class="owner uppercase bold">{{ user.network }}</div>
+            </div>
+            <el-button class="settings-button" type="text"><i class="fa fa-cog" aria-hidden="true"></i></el-button>
+            <el-button class="settings-button" type="text" @click.native="logout"><i class="fas fa-sign-out-alt"></i></el-button>
         </el-col>
     </el-row>
 </template>
 
 <script>
-import TextMixin from '@/mixins/text';
-import { USER_SETTINGS } from '../../../constant/routes';
-import { generateBlockies } from '../../../helpers/blockies';
-import { addr, getNetwork } from '../../../helpers/web3';
+import TextMixin from '@/mixins/text'
+import { USER_SETTINGS } from '../../../constant/routes'
+import { generateBlockies } from '../../../helpers/blockies'
+import { addr, getNetwork } from '../../../helpers/web3'
 export default {
   name: 'Header',
-  data: function() {
-    const select = addr();
-    const icon = generateBlockies(select);
-    const network = getNetwork();
+  data: function () {
+    const select = addr()
+    const icon = generateBlockies(select)
+    const network = getNetwork()
     return {
       user: {
         logo: icon,
         name: select,
         network: network
       }
-    };
+    }
   },
-  mounted() {
-    this.$refs.logo.appendChild(this.user.logo);
+  mounted () {
+    this.$refs.logo.appendChild(this.user.logo)
   },
   methods: {
-    openSettings: function() {
+    openSettings: function () {
       this.$router.push({
         name: USER_SETTINGS
-      });
+      })
     },
-    logout: function() {
-      sessionStorage.removeItem('token');
-      location.reload(true);
+    logout: function () {
+      sessionStorage.removeItem('token')
+      location.reload(true)
     }
   },
   mixins: [TextMixin]
-};
+}
 </script>
 
 <style lang="sass">

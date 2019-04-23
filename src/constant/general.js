@@ -1,3 +1,3 @@
-export const LOGO = VUE_APP_LOGO;
-export const MAIN_COLOR = VUE_APP_MAIN_COLOR;
-export const NAME = VUE_APP_NAME;
+export const LOGO = process.env.VUE_APP_LOGO
+export const MAIN_COLOR = process.env.VUE_APP_MAIN_COLOR
+export const NAME = process.env.VUE_APP_NAME
